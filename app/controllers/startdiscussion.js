@@ -3,7 +3,7 @@ import Controller from '@ember/controller';
 export default Controller.extend({
     actions: {
         goToDiscussion(){
-            this.transitionToRoute('project-view')
+            this.transitionToRoute('discuss')
         }
     }
 });
