@@ -1,0 +1,85 @@
+{{#paper-sidenav-container class="inner-sidenav"}}
+{{#paper-sidenav
+	class="md-whiteframe-z2"
+	name="left"
+	open=leftSideBarOpen
+	lockedOpen = false
+	onToggle=(action (mut leftSideBarOpen))}}
+	{{#paper-toolbar as |toolbar|}}
+		{{#paper-toolbar-tools}}Agiler Frontend{{/paper-toolbar-tools}}
+	{{/paper-toolbar}}
+
+<div class="sidenav-container">
+{{#paper-list}}
+	{{#link-to  "my-projects"}}
+	{{#paper-item class="md-2-line"}}
+      <div class="md-list-item-text nav-route">
+        <h3 >My Projects</h3>
+      </div>
+  {{/paper-item}}{{/link-to}}
+	{{paper-divider}}
+	 {{#link-to  "project-view"}} {{#paper-item class="md-2-line"}}
+      <div class="md-list-item-text" >
+        <h3 class="nav-route">Project View</h3>
+      </div>
+  {{/paper-item}}{{/link-to}}
+	{{paper-divider}}
+	{{#paper-item class="md-2-line"}}
+      <div class="md-list-item-text" >
+        <h3 class="nav-route">Team Projects</h3>
+      </div>
+  {{/paper-item}}
+	{{paper-divider}}
+	{{!--{{#paper-item class="md-2-line"}}
+      <div class="md-list-item-text" >
+        <h3 class="nav-route">Project Profile</h3>
+      </div>
+  {{/paper-item}}
+	{{paper-divider}}
+	{{#paper-item class="md-2-line"}}
+      <div class="md-list-item-text" >
+        <h3 class="nav-route">User Profile</h3>
+      </div>
+  {{/paper-item}}
+	{{paper-divider}}
+	{{#link-to "index"}}
+	{{#paper-item class="md-2-line"}}
+      <div class="md-list-item-text">
+        <h3>Logout</h3>
+      </div>
+  {{/paper-item}}
+	{{/link-to}}
+	{{paper-divider}}--}}
+{{/paper-list}}	 
+</div>		
+	{{/paper-sidenav}}
+	
+
+{{#paper-toolbar}}
+	  {{#paper-toolbar-tools}}
+		    
+				{{#paper-sidenav-toggle name="left" as |toggleAction|}}
+					{{#paper-button classNames="hide-xl" onClick=(action toggleAction) iconButton=true}}
+						{{paper-icon "menu"}}
+					{{/paper-button}}
+				{{/paper-sidenav-toggle}}
+		    <h2>
+		      {{#link-to "my-projects"}}Agiler Frontend{{/link-to}}
+		    </h2>
+		    <span class="flex"></span>
+		    {{#paper-button iconButton=true}}
+		      {{paper-icon "search"}}
+		    {{/paper-button}}
+		    {{#paper-button iconButton=true}}
+		      {{paper-icon "notification_important"}}
+		    {{/paper-button}}
+		    {{#paper-button iconButton=true}}
+		      {{paper-icon "account_circle"}}
+		    {{/paper-button}}
+		    {{#paper-button iconButton=true}}
+		      {{paper-icon "more_vert"}}
+		    {{/paper-button}}
+	  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+{{/paper-sidenav-container}}
+
