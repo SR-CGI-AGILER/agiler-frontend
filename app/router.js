@@ -12,6 +12,10 @@ Router.map(function() {
     this.route('invite-members');
     this.route('team-name');
   });
+  this.route('startdiscussion');
+  this.route('discuss');
+  this.route('my-projects');
+  this.route('project-view');
 });
 
 export default Router;
