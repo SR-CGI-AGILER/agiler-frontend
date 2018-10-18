@@ -1,0 +1,31 @@
+{{outlet}}
+<h3>Project View</h3>
+<div class="layout-column">
+    {{#paper-subheader}}<h3>ProjectName:</h3>{{/paper-subheader}}
+    {{#paper-subheader}}<h4>CreatedAt:</h4>{{/paper-subheader}}
+    {{#paper-subheader}}<h4>CreatedBy:</h4>{{/paper-subheader}}
+    {{paper-divider}}
+    {{#paper-list}}
+  {{#each model as |x|}}
+    {{#paper-item as |controls|}}
+     {{controls.checkbox value=x.enabled secondary=true onChange=(action (mut x.enabled))}}
+     
+      <div class="md-list-item-text">
+        {{x.taskName}} 
+         {{#paper-button iconButton=true}} 
+        {{paper-icon "delete"}}
+        {{/paper-button}}
+        {{paper-divider}}
+      </div>
+    {{/paper-item}}
+  {{/each}} 
+     {{/paper-list}}
+</div>
+
+{{!-- <div class="layout-row layout-align-center-end">
+    {{paper-input label="Add Task" type="text" value=name2 block=true 
+    onChange=(action (mut name2))}}
+    {{#paper-button iconButton="true" onClick=(action "addTask" model)}}
+        {{paper-icon "add"}}
+    {{/paper-button}}
+</div> --}}
