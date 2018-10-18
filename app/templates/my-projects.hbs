@@ -1,0 +1,20 @@
+{{outlet}}
+
+
+{{!-- <h1>gdcjhmdagchjdsg</h1>
+<div class="container"> --}}
+
+	{{#each model as |project|}}
+	{{#paper-card as |card| }}
+
+   
+ {{#paper-subheader}}<h2 {{action "transitionToProjectView" project}}>{{project.projectName}}</h2>{{/paper-subheader}}
+ 
+ 
+  
+     
+    {{/paper-card}}
+    {{/each}}
+
+
+{{!-- </div> --}}
