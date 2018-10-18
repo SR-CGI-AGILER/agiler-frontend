@@ -7,11 +7,11 @@ export default Controller.extend({
     // config: config.torii.providers['github-oauth2'],
     actions:{
         authenticateSession(){
-            debugger
+            
             let session = this.get('session');
             //cgeonsole.log ( session.get("data"), "asdklasdlkdkjlsdflkjjsfjkdh")
             this.get('session').authenticate('authenticator:torii', 'google-oauth2').then(()=>{
-                debugger
+                // debugger
                 // session.
                 // console.log(this.get('session').access_token);
                 if(this.get('session').data.authenticated.access_token){
