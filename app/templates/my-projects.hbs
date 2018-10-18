@@ -1,20 +1,20 @@
 {{outlet}}
 
 
-{{!-- <h1>gdcjhmdagchjdsg</h1>
-<div class="container"> --}}
+
+<div class="container">
 
 	{{#each model as |project|}}
-	{{#paper-card as |card| }}
-
-   
- {{#paper-subheader}}<h2 {{action "transitionToProjectView" project}}>{{project.projectName}}</h2>{{/paper-subheader}}
+	{{#paper-list}}
+{{#paper-item}}
+   {{paper-icon "description"}}
+ <p {{action "transitionToProjectView" project}}>{{project.projectName}}</p>
  
+ {{paper-divider}}
  
-  
-     
-    {{/paper-card}}
+     {{/paper-item}}
+    {{/paper-list}}
     {{/each}}
 
 
-{{!-- </div> --}}
+</div>
