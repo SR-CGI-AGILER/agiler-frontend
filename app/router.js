@@ -7,6 +7,11 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('create-team', function() {
+    this.route('integrations');
+    this.route('invite-members');
+    this.route('team-name');
+  });
 });
 
 export default Router;

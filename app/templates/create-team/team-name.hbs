@@ -1,0 +1,14 @@
+{{outlet}}
+<div class="container-team-name">
+{{paper-progress-linear value=33}}
+<div class="layout-column">
+    <div class="layout layout-align-space-around-center">
+        {{paper-input label="Team Name" value=team_name onChange=(action (mut team_name))}}
+    </div>
+    <div class="layout-row layout-align-end-end">
+        {{#link-to "create-team.invite-members"}}
+            {{#paper-button mini=true warn=true}}{{paper-icon "keyboard_arrow_right"}}{{/paper-button}}
+        {{/link-to}}
+    </div>
+</div>
+</div>

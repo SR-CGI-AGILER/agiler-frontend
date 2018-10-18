@@ -20,6 +20,21 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    torii: {
+      sessionServiceName: 'session',
+      providers: {
+        'google-oauth2': {
+          apiKey: '1053797418071-cb49noe362osfv37v0jc25bkvqbum5qp.apps.googleusercontent.com',
+          redirectUri: 'http://localhost:4200/torii/redirect.html',
+          scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+        },
+        'github-oauth2': {
+          apiKey: 'b09b72c66b65f345c0a9',
+          redirectUri: 'http://localhost:4200/torii/redirect.html',
+          scope: 'repo user'
+        }
+      }
     }
   };
 
