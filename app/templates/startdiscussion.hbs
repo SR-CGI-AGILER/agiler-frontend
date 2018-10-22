@@ -1,4 +1,13 @@
 {{outlet}}
+
+{{#paper-card as |card|}}
+      {{paper-input class="topicsearchbar" label="Start a Topic" value=name onChange=(action (mut name))}}
+        {{#card.actions}}
+        <a href="#" {{action 'goToDiscussion' name}}>
+        {{paper-icon "add"}}
+        </a>
+      {{/card.actions}}
+    {{/paper-card}}
 {{#paper-list}}
   {{#paper-subheader}}Existing Discussions{{/paper-subheader}}
   {{#each model as |item|}}
@@ -10,3 +19,4 @@
   {{/each}}
 {{paper-divider}}
 {{/paper-list}}
+
