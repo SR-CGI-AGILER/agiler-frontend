@@ -23,9 +23,8 @@
         <span class="flex"></span>
         {{paper-input label="message" type="text" value=var block=true onChange=(action (mut var)) icon="add"}}
     </div>
-    <a href="#" {{action 'sendButtonPressed'}}>
+    <a href="#" {{action 'sendButtonPressed' var}}>
         {{paper-icon "send"}}
     </a>
-
 </div>
 {{/paper-list}}
