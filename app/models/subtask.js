@@ -1,7 +1,7 @@
 import DS from 'ember-data';
-import { strictEqual } from 'assert';
 
-const {attr} = DS;
+const { attr } = DS;
+
 export default DS.Model.extend({
     taskId :attr('string'),
     subTaskName : attr('string'),

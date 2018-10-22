@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
-
- const {attr} = DS;
+ const { attr } = DS;
+ 
 export default DS.Model.extend({
     projectName : attr('string'),
     createdAt : attr('date'),

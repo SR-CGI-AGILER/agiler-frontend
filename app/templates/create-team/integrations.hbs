@@ -1,0 +1,33 @@
+{{outlet}}
+<div class="container-integration">
+    {{paper-progress-linear value=99}}
+    <div class="layout-column flex layout-align-center-center">
+        <h4>
+            One Final Step!
+        </h4>
+
+        {{paper-input label="Browse Integrations" value=name onChange=(action (mut name))}}
+    </div>
+    {{#paper-subheader}}Integrations{{/paper-subheader}}
+    {{paper-divider}} 
+    {{#paper-list}}
+
+    {{#paper-item}}
+        {{paper-icon "dashboard"}}
+        <p>Slack</p>
+    {{/paper-item}}
+    {{#paper-item}}
+        {{paper-icon "view-quilt"}}
+        <p>Github</p>
+    {{/paper-item}} 
+    {{/paper-list}}
+
+    {{paper-divider}}
+    <div class="layout-column flex layout-align-center-center">
+        {{#link-to "my-projects"}}
+        {{#paper-button raised=true primary=true}}
+            Done
+        {{/paper-button}}
+        {{/link-to}}
+    </div>
+</div>
