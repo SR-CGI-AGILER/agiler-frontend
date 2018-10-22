@@ -11,6 +11,28 @@ export default Controller.extend({
         transitionToProjectView(project){
             console.log(project.get("id"), "askldjlaksjdlkajslkdja");
             this.transitionToRoute('project-view', project.get('id') , {queryParams: {  modelName: project.constructor.modelName}});
+        },
+        // actions : {
+            findTeam(){
+                // let data = this.serialize(snapshot);
+        
+                return new Promise((resolve) => {
+                    Em.$.ajax({
+                        async: true,
+                        crossDomain: true,
+                        type: 'GET',
+                        contentType: 'application/json',
+                        // data: JSON.stringify(data),
+                        url: `http://172.23.238.243:4000/api/teams/team1`,
+                        success: {
+                            200: ()=>{
+                                Em.run(null, resolve);
+                                console.log(resolve)
+                            }
+                        }
+                    })
+                })
+            }
         }
-    }
+
 });

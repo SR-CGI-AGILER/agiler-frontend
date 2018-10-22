@@ -4,9 +4,10 @@ export default Route.extend({
     model(params){
        
         let data = {
-            project: this.store.findRecord('project', params.id),
-            tasks: this.store.findAll('task', {id: params.id})
-        }
+            project: this.store.peekRecord('project', params.id),
+            // tasks: this.store.findAll('task', {id: params.id})
+            tasks: this.store.query('task', {projectId: params.id})
+        };
         console.log(data)
         return data
     },

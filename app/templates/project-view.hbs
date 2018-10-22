@@ -15,7 +15,7 @@
      
       <div class="md-list-item-text">
         {{x.taskName}} 
-         {{#paper-button iconButton=true}} 
+         {{#paper-button iconButton=true onClick=(action 'deleteTask' x)}} 
         {{paper-icon "delete"}}
         {{/paper-button}}
         {{paper-divider}}

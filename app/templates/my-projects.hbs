@@ -9,12 +9,14 @@
 {{#paper-item}}
    {{paper-icon "description"}}
  <p {{action "transitionToProjectView" project}}>{{project.projectName}}</p>
+ {{#paper-button onClick = (action 'findTeam')}}ASJLFN{{/paper-button}}
  
  {{paper-divider}}
  
      {{/paper-item}}
     {{/paper-list}}
     {{/each}}
+
 
 
 </div>

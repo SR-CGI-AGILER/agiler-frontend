@@ -11,5 +11,4 @@ export default DS.Model.extend({
     status : attr('string'),
     archiveTask : attr('boolean'),
     duringStandUp : attr('boolean')
-
 });

@@ -5,4 +5,5 @@ export default Route.extend({
         let a = this.store.findAll('project')
         return a
     }
+   
 });
