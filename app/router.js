@@ -13,7 +13,7 @@ Router.map(function() {
     this.route('team-name');
   });
   this.route('startdiscussion');
-  this.route('discuss');
+  this.route('discuss', { path:'/discuss/:room' });
   this.route('my-projects');
   this.route('project-view', {path:'/project-view/:id'});
 });

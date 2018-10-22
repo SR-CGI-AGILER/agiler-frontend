@@ -1,9 +1,6 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-
-    queryParams: ['room'],
-
     actions: {
         sendButtonPressed(name){
             this.store.createRecord('message', {
@@ -14,6 +11,15 @@ export default Controller.extend({
                 
             }).save();
             this.set('var',"");
+        },
+
+        addUsers() {
+            this.toggleProperty('showDialog')
+        },
+
+        closeDialog(){
+            this.toggleProperty('showDialog')
         }
     }
-})
+});
+
