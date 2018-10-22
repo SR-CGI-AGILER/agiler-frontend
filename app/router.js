@@ -7,6 +7,13 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('create-team', function() {
+    this.route('integrations');
+    this.route('invite-members');
+    this.route('team-name');
+  });
+  this.route('startdiscussion');
+  this.route('discuss');
   this.route('my-projects');
   this.route('project-view', {path:'/project-view/:id'});
 });
