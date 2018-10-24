@@ -5,11 +5,10 @@ import Em from 'ember';
 export default DS.RESTAdapter.extend({
 	//making a server call to projects
 	
-	
 	buildURL(modelName, id, snapshot, requestType, query){
-		let teamId = query._id;
-		return `http://localhost:8000/api/v1/teams/${teamId}/projects`;
-	}
+
+        return `http://localhost:8000/api/v1/member/345/projects/`;
+    }
 	
 	// findRecord(store, type, snapshot) {
     //     let data = this.serialize(snapshot);
