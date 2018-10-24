@@ -1,0 +1,36 @@
+{{outlet}}
+
+
+<div class="container">
+
+	{{!-- {{#each model as |team|}} --}}
+	{{#paper-list}}
+{{#paper-item}}
+   {{paper-icon "description"}}
+ <p >hghnndndnnfggfdggfdgfddghgh</p>
+
+ 
+ {{paper-divider}}
+ 
+     {{/paper-item}}
+    {{/paper-list}}
+    {{!-- {{/each}} --}}
+
+<div class="layout-row layout-align-center-end">
+{{#paper-button primary=true fab=true onClick=(action "showPromptDialogAction")}}+{{/paper-button}}
+{{#if showPromptDialog}}
+  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin}}
+    {{#paper-dialog-content}}
+      {{paper-input placeholder="projectName" autofocus=true value=projectName onChange=(action (mut projectName))}}
+      {{paper-input placeholder="teamName" autofocus=true value=teamName onChange=(action (mut teamName))}}
+    {{/paper-dialog-content}}
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button primary=true onClick=(action "closePromptDialog" "cancel")}}Cancel{{/paper-button}}
+      {{#paper-button primary=true onClick=(action "ok")}}Ok{{/paper-button}}
+    {{/paper-dialog-actions}}
+
+  {{/paper-dialog}}
+{{/if}}
+</div>
+</div>
