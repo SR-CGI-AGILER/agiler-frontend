@@ -2,8 +2,15 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
     actions: {
-        transitionToProjectView(project){
-            // this.transitionToRoute('project-view', project.get('id') , {queryParams: {  modelName: project.constructor.modelName}});
+        transitionToMyTeamProjects(team){
+            console.log(team._internalModel.id,"teams")
+            let temp  = team._internalModel.id 
+            console.log(temp,"whta is this?");
+
+            this.store.query('project', { assignTo: temp})
+            // this.transitionToRoute('my-team-projects', team.get('id') , {queryParams: {  modelName: team.constructor.modelName}});
+
+            
         },
             
             showPromptDialogAction(){

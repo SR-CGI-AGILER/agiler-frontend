@@ -1,10 +1,13 @@
 import DS from 'ember-data';
-
+import {inject as service} from '@ember/service';
 export default DS.RESTAdapter.extend({
-    buildURL(modelName, id, snapshot, requestType, query){
+    session: service('session'),
 
-        return `http://172.23.238.195:8000/api/v1/member/345/projects/`;
-    },
+    buildURL(modelName, id, snapshot, requestType, query){
+     let memberId =this.get('session').session.content.authenticated.userdata.id;
+ console.log(memberId,"hgfchgdasghsagh")
+        return `http://172.23.238.195:8000/api/v1/teams/${memberId}`;
+    }
 //     createRecord(store, type, snapshot) {
 //         let data = this.serialize(snapshot);
 

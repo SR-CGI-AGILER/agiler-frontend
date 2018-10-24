@@ -4,11 +4,11 @@
 
 <div class="container">
 
-	{{#each model as |team|}}
+	{{#each model as |project|}}
 	{{#paper-list}}
 {{#paper-item}}
    {{paper-icon "description"}}
- <p {{action "transitionToProjectView" project}}>{{team.projectName}}</p>
+ <p {{action "transitionToProjectView" project}}>{{project.projectName}}</p>
 
  
  {{paper-divider}}

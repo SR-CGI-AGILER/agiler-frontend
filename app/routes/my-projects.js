@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
     model(){
-        let a = this.store.findAll('team');
+        let a = this.store.findAll('project');
         // retun a
         console.log(a);
         // a.map(function(e){

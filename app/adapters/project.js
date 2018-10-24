@@ -5,7 +5,24 @@ import Em from 'ember';
 export default DS.RESTAdapter.extend({
 	//making a server call to projects
 	
-	
+    buildURL(modelName, id, snapshot, requestType, query){
+        if (query.assignTo) {
+            return  `http://172.23.238.195:8000/api/v1/teams/${query.assignTo}/projects`;
+        }else {
+
+            return `http://172.23.238.195:8000/api/v1/member/345/projects/`;
+        }
+        debugger
+    },
+    urlForQuery (query, modelName) {
+        // switch(modelName) {
+            // case 'repo' :
+            debugger
+            return  `http://172.23.238.195:8000/api/v1/teams/${query.assignTo}/projects`;
+            // default:
+            // return this._super(...arguments);
+        // }
+    }
 	
 	// findRecord(store, type, snapshot) {
     //     let data = this.serialize(snapshot);
