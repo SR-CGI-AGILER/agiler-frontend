@@ -7,9 +7,8 @@ export default DS.Model.extend({
     createdAt : attr('date'),
     createdBy : attr('string'),
     dueDate : attr('date'),
-    assignedTo : attr(),
+    assignedTo : attr('team'),
     status : attr('string'),
     archiveTask : attr('boolean'),
     duringStandUp : attr('boolean')
-
 });
