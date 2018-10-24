@@ -5,6 +5,7 @@ export default DS.RESTAdapter.extend({
 	buildURL() {
 		return `http://localhost:3000/api/v1/user/mddd34/rooms`
 	},
+	
 	createRecord(store, type, snapshot) {
 		let data = snapshot.attr('roomName');
 		return new Promise((resolve) => { 

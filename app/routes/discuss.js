@@ -1,8 +1,16 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-    model() {
+    param: null,
+
+    model(param) {
+        this.set('param', param)
+        console.log(param.room)
+        return this.store.query('message', {roomName: param.room})
         
-        return this.store.findAll('message')
     },
+    setupController(controller, model ){
+        this._super(controller, model);
+        controller.set('param', this.get('param'))
+    }
 });

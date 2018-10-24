@@ -5,12 +5,12 @@ export default DS.RESTSerializer.extend({
     console.log(payload)
 
     let data = payload.payload.data.map(function(e) {
-      e.id = e._id
-      return e
+        e.id = e._id
+        return e
     })
+    
     payload = {
-
-      messages: data
+      message: data
     };
     return this._super(store, primaryModelClass, payload, id, requestType);
   }
