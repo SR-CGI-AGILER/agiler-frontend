@@ -4,5 +4,5 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
     // x : document.cookie
-    validSession: document.cookie
+    //validSession: document.cookie
 });
