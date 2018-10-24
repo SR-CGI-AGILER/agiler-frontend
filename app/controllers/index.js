@@ -15,6 +15,8 @@ export default Controller.extend({
                 // session.
                 // console.log(this.get('session').access_token);
                 let token = this.get('session').session.content.authenticated.jwtToken;
+                let data = this.get('session').session.content.authenticated.userData;
+                this.get('session').set('currentUser',data);
                 document.cookie = `jwtToken=${token}`;
                 console.log(document.cookie,"Ember Cookie");
                 if(token){
