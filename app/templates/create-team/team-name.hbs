@@ -1,4 +1,8 @@
+{{#if validSession}}
+
 {{outlet}}
+
+
 <div class="container-team-name">
 {{paper-progress-linear value=33}}
 <div class="layout-column">
@@ -12,3 +16,6 @@
     </div>
 </div>
 </div>
+{{else}}
+    <center><h1>NOT AUTHORIZED</h1></center>
+{{/if}}

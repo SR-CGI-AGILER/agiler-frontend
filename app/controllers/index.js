@@ -14,7 +14,10 @@ export default Controller.extend({
                 // debugger
                 // session.
                 // console.log(this.get('session').access_token);
-                if(this.get('session').data.authenticated.access_token){
+                let token = this.get('session').session.content.authenticated.jwtToken;
+                document.cookie = `jwtToken=${token}`;
+                console.log(document.cookie,"Ember Cookie");
+                if(token){
                     this.transitionToRoute('create-team.team-name');
                 }
             }).catch(err=>{
