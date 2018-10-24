@@ -16,6 +16,7 @@ Router.map(function() {
   this.route('discuss');
   this.route('my-projects');
   this.route('project-view', {path:'/project-view/:id'});
+  this.route('my-team-projects');
 });
 
 export default Router;
