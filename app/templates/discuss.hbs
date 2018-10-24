@@ -25,11 +25,11 @@
         {{/paper-card}}
         {{#paper-list}}
             {{#paper-subheader}}Members{{/paper-subheader}}
-            {{#each model.users as |item|}}
+            {{#each members as |item|}}
                 {{#paper-item class="md-3-line" }}
                 {{!-- <img src={{item.img}} alt={{item.name}} class="md-avatar"> --}}
                     <div class="md-list-item-text">
-                        <h3>{{item.name}}</h3>
+                        <h3>{{item.memberId}}</h3>
                     </div>
                 {{/paper-item}}
             {{paper-divider}}

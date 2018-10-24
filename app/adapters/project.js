@@ -7,8 +7,8 @@ export default DS.RESTAdapter.extend({
 	
 	
 	buildURL(modelName, id, snapshot, requestType, query){
-		let teamId = query._id;
-		return `http://localhost:8000/api/v1/teams/${teamId}/projects`;
+		// let teamId = query._id;
+		// return `http://localhost:8000/api/v1/teams/${teamId}/projects`;
 	}
 	
 	// findRecord(store, type, snapshot) {
