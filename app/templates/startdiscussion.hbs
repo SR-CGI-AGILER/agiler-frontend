@@ -11,7 +11,7 @@
 {{#paper-list}}
   {{#paper-subheader}}Existing Discussions{{/paper-subheader}}
   {{#each model as |item|}}
-    {{#paper-item class="md-3-line" onClick=(action "goToRoom" item.roomName)}}
+    {{#paper-item class="md-3-line" onClick=(action "goToRoom" item)}}
       <div class="md-list-item-text">
         <h3>{{item.roomName}}</h3>
       </div>

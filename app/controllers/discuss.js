@@ -1,42 +1,86 @@
 import Controller from '@ember/controller';
 
+import {
+  inject as service
+} from '@ember/service';
+
+import Ember from 'ember';
+const {
+  getOwner
+} = Ember;
+
 export default Controller.extend({
-    actions: {
+  queryParams: ['roomId'],
+  session: service('session'),
+
+  actions: {
     sendButtonPressed(name) {
+
+      let data = this.get('session').session.content.authenticated.userData;
+
       this.store.createRecord('message', {
-        roomname: "raaptor",
+        roomname: this.get('param').room,
         messages: this.get('var'),
-        createdBy: "Atreya",
+        createdBy: data.name,
         createdAt: name
 
       }).save();
       this.set('var', "");
+
+      this.get('model').pushObject({
+        roomname: this.get('param').room,
+        messages: this.get('var'),
+        createdBy: "Atreya"
+
+
+      })
     },
 
-    addUsers() {
-        console.log(this.get('teams'), "Iam inside the discuss controller")
-        this.set('members', [])
-        this.get('teams').map( eachTeam => {
-            console.log(eachTeam)
-            eachTeam.teamMembers.map(eachMember => {
+    //   }).save();
+    //   this.set('var', "");
+    // },
 
-                this.get('members').push(eachMember)
-            })
+    addUsers() {
+      // console.log(this.get('teams'), "Iam inside the discuss controller")
+      this.set('members', [])
+      this.get('teams').map(eachTeam => {
+        // console.log(eachTeam)
+        eachTeam.teamMembers.map(eachMember => {
+
+          this.get('members').push(eachMember)
         })
-        console.log(this.get('members'), "I should be the memners array")
-        this.toggleProperty('showDialog');
-        
-        // this.set('showuser', this.store.findAll('users'));
-        // console.log(this.get('showuser'))
+      })
+      console.log(this.get('members'), "I should be the members array")
+      this.toggleProperty('showDialog');
+
+      // this.set('showuser', this.store.findAll('users'));
+      // console.log(this.get('showuser'))
     },
 
     closeDialog() {
-        this.toggleProperty('showDialog')
+      this.toggleProperty('showDialog')
     },
 
     search_user(user) {
-        console.log(user)
+      console.log(user)
 
+    },
+    
+    add(userid) {
+       let roomname = this.get('param').room
+        let roomid = this.get('roomId')
+        this.store.findRecord('room',roomid).then(function(data){
+          console.log(data.members,"I am data")
+          data.members.push(userid)
+
+        });
+        return new Promise((resolve) => { 
+          Ember.$.ajax({
+            type: "PUT",
+            url: `http://localhost:3000/api/v1/chat-room/invite/${roomname}/user/${userid}`,
+            data: {}
+            });
+        }) 
     }
   }
 });

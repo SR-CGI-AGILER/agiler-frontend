@@ -1,32 +1,36 @@
+
+
 {{#paper-list}}
     {{#paper-subheader}}topic name{{/paper-subheader}}
+    {{!-- {{session.currentUser.picture}} --}}
     {{#each model.messages as |msg|}}
         {{#paper-item class="md-3-line"}}
-            <img src='https://previews.123rf.com/images/pandavector/pandavector1704/pandavector170406117/76645972-man-with-beard-icon-flat-single-avatar-icon-.jpg'
-                alt="no image" class="md-avatar">
+
+        <img src={{session.currentUser.picture}} alt="no image" class="md-avatar">
             <div class="md-list-item-text">
             <div class="layout-row layout-align-space-between">
-            <h3>{{msg.createdBy}}</h3>
-            {{!-- <h4 class="time-head">2d ago</h4> --}}
+                
+                <h3>{{msg.createdBy}}</h3>
+                <h4 class="time-head">{{msg.createdAt}}</h4>
             </div>
-            <p>{{msg.messages}}</p>
+                <p>{{msg.messages}}</p>
             </div>
-        {{paper-divider inset=true}}
+{{paper-divider inset=true}}
         {{/paper-item}}
     {{/each}}
 
-{{#if showDialog}}
+    {{#if showDialog}}
     {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
-        {{#paper-card as |card|}}
+        {{!-- {{#paper-card as |card|}}
             {{input type="text" value=name placeholder="search" insert-newline='myAction' class="search"}}
 	            {{#card.actions class="layout-column"}}
                     {{#paper-button onClick=(action 'search_user' name)}}Search{{/paper-button}} 
                 {{/card.actions}} 
-        {{/paper-card}}
-        {{#paper-list}}
-            {{#paper-subheader}}Members{{/paper-subheader}}
+        {{/paper-card}} --}}
+    {{#paper-list}}
+        {{#paper-subheader}}Members{{/paper-subheader}}
             {{#each members as |item|}}
-                {{#paper-item class="md-3-line" }}
+                {{#paper-item class="md-3-line" onClick = (action "add" item.memberId) }}
                 {{!-- <img src={{item.img}} alt={{item.name}} class="md-avatar"> --}}
                     <div class="md-list-item-text">
                         <h3>{{item.memberId}}</h3>
@@ -34,9 +38,11 @@
                 {{/paper-item}}
             {{paper-divider}}
             {{/each}}
-        {{/paper-list}}
+    {{/paper-list}}
     {{/paper-dialog}}
-{{/if}}
+    {{/if}}  
+
+
 
 
 <div class="text-box">

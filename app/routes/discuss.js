@@ -1,42 +1,51 @@
 import Route from '@ember/routing/route';
-import RSVP from 'rsvp';
-import team from '../serializers/team';
+
+
+import {
+  inject as service
+} from '@ember/service';
 
 export default Route.extend({
-  teams: null, 
-  model() {
-    
-    // return RSVP.hash({
-    //   messages: this.store.findAll('message'),
-    // //   users: this.store.findAll('users')
-    // })
-    this.store.findAll('team').then((data) => {
-       let teams = data.map(function(eachTeam) {
-         return eachTeam.getProperties('id', 'teamMembers')
-       })
-      //  this.set('teams', teams)
-       console.log(teams)
-      //  teams.map(function(teamId) {
-      //    this.store
-      //  })
+  // teams: null,
+  param: null,
+  session: service('session'),
+  async model(param) {
+    this.set('param', param)
+    await this.store.findAll('team').then((data1) => {
+      // console.log(team)
+      let teams = data1.map(function (eachTeam) {
+
+        return eachTeam.getProperties('id', 'teamMembers')
+      });
       this.set('teams', teams)
-      console.log(this.get('teams'))
+      // console.log(this.get('teams'))
     })
+    // console.log(param.room)
+    let data = this.get('session').currentUser;
+    // console.log(data, "In route");
 
+    // console.log(this.get('teams'), "here in set teams")
 
-    
-    let data = {
-      messages: this.store.findAll('message'),
-      users: this.store.findAll('user')
+    let data2 = {
+      messages: this.store.query('message', {
+        roomName: param.room
+      }),
+      // messages: this.store.findAll('message'),
+      // users: this.store.findAll('user')
     }
-    return data
+    // console.log(data2, "this is the return in the model")
+    return data2
   },
   //   setupController(controller, model) {
   //       this._super(controller, model);
   //       this.controller.set('users', this.store.findAll('users'))
   //   }
-
   setupController(controller, model) {
+    this._super(controller, model);
+    controller.set('param', this.get('param'))
+    // console.log(this.get('param'),"param ....")
+    // console.log(this.get('teams'), "this is a problem then ...")
     controller.set('teams', this.get('teams'))
+
   }
 });
