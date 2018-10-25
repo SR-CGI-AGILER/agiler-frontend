@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
     model(){
+        debugger
         let a = this.store.findAll('project');
         // retun a
         console.log(a);
