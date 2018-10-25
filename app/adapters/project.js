@@ -6,8 +6,9 @@ export default DS.RESTAdapter.extend({
 	//making a server call to projects
 	
     buildURL(modelName, id, snapshot, requestType, query){
-        if (query.assignTo) {
-            return  `http://172.23.238.195:8000/api/v1/teams/${query.assignTo}/projects`;
+        if (query) {
+            // console.log(query.assignTo,"gggg")
+            return  `http://172.23.238.195:8000/api/v1/teams/${query.assignTo.teamId}/projects`;
         }else {
 
             return `http://172.23.238.195:8000/api/v1/member/345/projects/`;

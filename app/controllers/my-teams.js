@@ -3,12 +3,12 @@ import Controller from '@ember/controller';
 export default Controller.extend({
     actions: {
         transitionToMyTeamProjects(team){
-            console.log(team._internalModel.id,"teams")
+            // console.log(team._internalModel.id,"teams")
             let temp  = team._internalModel.id 
-            console.log(temp,"whta is this?");
+            // console.log(temp,"whta is this?");
 
-            this.store.query('project', { assignTo: temp})
-            // this.transitionToRoute('my-team-projects', team.get('id') , {queryParams: {  modelName: team.constructor.modelName}});
+            // this.store.query('project', { assignTo: temp})
+            this.transitionToRoute('my-team-projects', temp , {queryParams: {  modelName: team.constructor.modelName}});
 
             
         },
