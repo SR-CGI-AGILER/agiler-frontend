@@ -1,8 +1,13 @@
 import Route from '@ember/routing/route';
-// import {inject as service } from '@ember/service';
+
+import {inject as service } from '@ember/service';
+
+
 export default Route.extend({
-    // session: service('session'),
+    session: service('session'),
+
     model(){
+        debugger
         let a = this.store.findAll('project');
         // retun a
     //    let userData = this.get('session').session.content.authenticated.userData;

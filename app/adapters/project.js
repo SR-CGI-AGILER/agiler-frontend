@@ -1,23 +1,20 @@
 import DS from 'ember-data';
+import {inject as service} from '@ember/service';
 
-import { inject as service } from '@ember/service';
+import Em from 'ember';
+
 
 export default DS.RESTAdapter.extend({
     session: service('session'),
     buildURL(modelName, id, snapshot, requestType, query){
+        debugger
         if (query) {
             // console.log(query.assignTo,"gggg")
             return  `http://localhost:8000/api/v1/teams/${query.assignTo}/projects`;
         }else {
-            
-           
-            // return `http://localhost:8000/api/v1/member/345/projects/`;
-            console.log("bjccbjd");
-            console.log(this.get('session'));
-            let memberId = this.get('session').session.content.authenticated.userdata.id;
-                console.log(memberId,"aaaadsdnj")
-                return `http://localhost:8000/api/v1/member/${memberId}/projects/`;
-            
+            let memberId =this.get('session').session.content.authenticated.userdata.id;
+            console.log(memberId,"hgfchgdasghsagh")
+            return `http://localhost:8000/api/v1/member/${memberId}/projects/`;
         }
       
     }

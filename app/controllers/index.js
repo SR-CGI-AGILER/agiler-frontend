@@ -16,8 +16,8 @@ export default Controller.extend({
                 // console.log(this.get('session').access_token);
                 let token = this.get('session').session.content.authenticated.responseObj.jwtToken;
                 console.log(this.get('session').session.content.authenticated);
-                document.cookie = `jwtToken=${token}`;
-                console.log(document.cookie,"Ember Cookie");
+                // document.cookie = `jwtToken=${token}`;
+                // console.log(document.cookie,"Ember Cookie");
                 if(token){
                     this.transitionToRoute('create-team.team-name');
                 }
