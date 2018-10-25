@@ -2,10 +2,7 @@ import Controller from '@ember/controller';
 export default Controller.extend({
     data: null,
     newCard: [],
-    // init(){
-
-    //     this.data = this.store.findAll('project')
-    // },
+    
     actions: {
         transitionToProjectView(project){
             this.transitionToRoute('project-view', project.get('id') , {queryParams: {  modelName: project.constructor.modelName}});
