@@ -21,8 +21,9 @@
 {{#if showPromptDialog}}
   {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin}}
     {{#paper-dialog-content}}
-      {{!-- {{paper-input placeholder="projectName" autofocus=true value=projectName onChange=(action (mut projectName))}} --}}
       {{paper-input placeholder="teamName" autofocus=true value=teamName onChange=(action (mut teamName))}}
+      {{!-- {{paper-input placeholder="" autofocus=true value=projectName onChange=(action (mut projectName))}} --}}
+
     {{/paper-dialog-content}}
     {{#paper-dialog-actions class="layout-row"}}
       <span class="flex"></span>

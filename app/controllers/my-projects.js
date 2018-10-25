@@ -18,49 +18,49 @@ export default Controller.extend({
 
             },
             ok(){
-                // console.log(this.getProperties('teamName'));
-            //    let newdata = {
-            //         projectName: this.getProperties('projectName'),
-            //         assignTo: [{teamName:this.get('teamName')}]
-            //     };
-            //     console.log(newdata);
-            //     //console.log(JSON.stringify(newdata));
-            //         return new Promise((resolve) => {
-            //             Em.$.ajax({
-            //                 async: true,
-            //                 crossDomain: true,
-            //                 type: 'POST',
-            //                 contentType: 'application/json',
-            //                 data: JSON.stringify(newdata),
-            //                 url:`http://localhost:8000/api/v1/project`,
-            //                 success: {
-            //                     200: ()=>{
-            //                         Em.run(null, resolve);
-            //                     }
-            //                 }
-            //             })
-            //         })
-            //     }
-            // }
+                console.log(this.getProperties('teamName'));
+               let newdata = {
+                    projectName: this.getProperties('projectName'),
+                    assignTo: [{teamName:this.get('teamName')}]
+                };
+                console.log(newdata);
+                //console.log(JSON.stringify(newdata));
+                    return new Promise((resolve) => {
+                        Em.$.ajax({
+                            async: true,
+                            crossDomain: true,
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(newdata),
+                            url:`http://localhost:8000/api/v1/project`,
+                            success: {
+                                200: ()=>{
+                                    Em.run(null, resolve);
+                                }
+                            }
+                        })
+                    })
+                }
+            }
    
 
-                if (this.getProperties('name2').name2) {
-                  let newProject = {
-                      // id: Math.random(Math.floor(100000)),
-                    projectName: this.getProperties('projectName').projectName,
-                    teamName: this.getProperties('teamName').teamName
-                  }
-                  this.newCard.pushObject(newProject);
-                  let createActivity = this.store.createRecord('project', {
-                      // id: newProject.id,
-                    projectName: newProject.projectName,
-                    assignTo: newProject.teamName
-                  })
-                  createActivity.save();
-                  console.log(createActivity)
-                }
-              }
-            }
+        //         if (this.getProperties('name2').name2) {
+        //           let newProject = {
+        //               // id: Math.random(Math.floor(100000)),
+        //             projectName: this.getProperties('projectName').projectName,
+        //             teamName: this.getProperties('teamName').teamName
+        //           }
+        //           this.newCard.pushObject(newProject);
+        //           let createActivity = this.store.createRecord('project', {
+        //               // id: newProject.id,
+        //             projectName: newProject.projectName,
+        //             assignTo: newProject.teamName
+        //           })
+        //           createActivity.save();
+        //           console.log(createActivity)
+        //         }
+        //     }
             
+        // }  
 
 });
