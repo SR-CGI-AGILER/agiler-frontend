@@ -5,8 +5,12 @@ export default Controller.extend({
     // modelName: null
     store: Ember.inject.service(),
 
-    projectDetails: []
-
+    projectDetails: [],
+    actions: {
+        transitionToProjectView(project){
+            this.transitionToRoute('project-view', project.get('id') , {queryParams: {  modelName: project.constructor.modelName}});
+        }
+    }
 
 
 
