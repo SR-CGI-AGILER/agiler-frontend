@@ -7,12 +7,13 @@ export default DS.RESTAdapter.extend({
     buildURL(modelName, id, snapshot, requestType, query){
         if (query) {
             // console.log(query.assignTo,"gggg")
-            return  `http://localhost:8000/api/v1/teams/${query.assignTo.teamId}/projects`;
+            return  `http://localhost:8000/api/v1/teams/${query.assignTo}/projects`;
         }else {
             
            
             // return `http://localhost:8000/api/v1/member/345/projects/`;
             console.log("bjccbjd");
+            console.log(this.get('session'));
             let memberId = this.get('session').session.content.authenticated.userdata.id;
                 console.log(memberId,"aaaadsdnj")
                 return `http://localhost:8000/api/v1/member/${memberId}/projects/`;
