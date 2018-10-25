@@ -47,7 +47,7 @@ export default DS.RESTAdapter.extend({
 	session: service('session'),
     buildURL(modelName, id, snapshot, requestType, query){
         if (query) {
-            // console.log(query.assignTo,"gggg")
+            console.log(query.assignTo,"gggg")
             return  `http://localhost:8000/api/v1/teams/${query.assignTo.teamId}/projects`;
         }else {
             let a = this.get('session');

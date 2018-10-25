@@ -32,7 +32,7 @@ export default Controller.extend({
                             type: 'POST',
                             contentType: 'application/json',
                             data: JSON.stringify(newdata),
-                            url:`http://localhost:8000/api/v1/project`,
+                            url:`http://localhost:8000/api/v1/project/:teamId`,
                             success: {
                                 200: ()=>{
                                     Em.run(null, resolve);
