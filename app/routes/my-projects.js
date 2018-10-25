@@ -3,12 +3,12 @@ import Route from '@ember/routing/route';
 export default Route.extend({
     // session: service('session'),
     model(){
-        
+        let a = this.store.findAll('project');
         // retun a
     //    let userData = this.get('session').session.content.authenticated.userData;
     //     console.log(userData,"aaaaaa");
         // let a = this.store.query('project',)
-        let a = this.store.findAll('project');
+       
         // a.map(function(e){
         //     console.log("jddhjhjh")
         //     this.store.query('project',{assignTo:[{_id:e._id}]})

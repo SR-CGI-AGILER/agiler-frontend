@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 export default Controller.extend({
     data: null,
-    newCard: [],
     
     actions: {
         transitionToProjectView(project){
@@ -19,7 +18,8 @@ export default Controller.extend({
 
             },
             ok(){
-                // console.log(this.getProperties('teamName'));
+            //     console.log(this.getProperties('teamName'),"team name");
+            //     console.log(this.getProperties('projectName'),"project name");
             //    let newdata = {
             //         projectName: this.getProperties('projectName'),
             //         assignTo: [{teamName:this.get('teamName')}]
@@ -42,26 +42,26 @@ export default Controller.extend({
             //             })
             //         })
             //     }
-            // }
+            }
    
 
-                if (this.getProperties('name2').name2) {
-                  let newProject = {
-                      // id: Math.random(Math.floor(100000)),
-                    projectName: this.getProperties('projectName').projectName,
-                    teamName: this.getProperties('teamName').teamName
-                  }
-                  this.newCard.pushObject(newProject);
-                  let createActivity = this.store.createRecord('project', {
-                      // id: newProject.id,
-                    projectName: newProject.projectName,
-                    assignTo: newProject.teamName
-                  })
-                  createActivity.save();
-                  console.log(createActivity)
-                }
-              }
-            }
+            //     if (this.getProperties('name2').name2) {
+            //       let newProject = {
+            //           // id: Math.random(Math.floor(100000)),
+            //         projectName: this.getProperties('projectName').projectName,
+            //         teamName: this.getProperties('teamName').teamName
+            //       }
+            //       this.newCard.pushObject(newProject);
+            //       let createActivity = this.store.createRecord('project', {
+            //           // id: newProject.id,
+            //         projectName: newProject.projectName,
+            //         assignTo: newProject.teamName
+            //       })
+            //       createActivity.save();
+            //       console.log(createActivity)
+            //     }
+            //   }
+            // }
             
-
+        }
 });

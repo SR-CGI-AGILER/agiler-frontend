@@ -3,7 +3,7 @@ import DS from 'ember-data';
 export default DS.RESTSerializer.extend({
     normalizeResponse(store, primaryModelClass, payload, id, requestType) {
        
-        payload = payload.payload.map(function(e) {
+        payload = payload.data.map(function(e) {
           e.id = e._id
           return e
         });
