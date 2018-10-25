@@ -46,15 +46,15 @@ export default DS.RESTAdapter.extend({
 	//making a server call to projects
 	session: service('session'),
     buildURL(modelName, id, snapshot, requestType, query){
-        if (query) {
-            console.log(query.assignTo,"gggg")
-            return  `http://localhost:8000/api/v1/teams/${query.assignTo.teamId}/projects`;
-        }else {
-            let a = this.get('session');
-            console.log(a.content,"hgfchgdasghsagh")
-            let memberId =this.get('session').session.content.authenticated.userdata.id;
-            return `http://localhost:8000/api/v1/member/${memberId}/projects/`;
-        }
+        // if (query) {
+        //     console.log(query.assignTo,"gggg")
+        //     return  `http://localhost:8000/api/v1/teams/${query.assignTo.teamId}/projects`;
+        // }else {
+            // let a = this.get('session');
+            // console.log(a.content,"hgfchgdasghsagh")
+            // let memberId =this.get('session').session.content.authenticated.userdata.id;
+            return `http://localhost:8000/api/v1/member/345/projects/`;
+        // }
         debugger
     },
     urlForQuery (query, modelName) {
