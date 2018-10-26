@@ -16,15 +16,5 @@ export default DS.RESTAdapter.extend({
             console.log(memberId,"hgfchgdasghsagh")
             return `http://localhost:8000/api/v1/member/${memberId}/projects/`;
         }
-        debugger
-    },
-    urlForQuery (query, modelName) {
-        // switch(modelName) {
-            // case 'repo' :
-            debugger
-            return  `http://localhost:8000/api/v1/teams/${query.assignTo}/projects`;
-            // default:
-            // return this._super(...arguments);
-        // }
     }
 })
