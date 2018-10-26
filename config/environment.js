@@ -21,21 +21,22 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-    torii: {
-      sessionServiceName: 'session',
-      providers: {
-        'google-oauth2': {
-          apiKey: '1053797418071-cb49noe362osfv37v0jc25bkvqbum5qp.apps.googleusercontent.com',
-          redirectUri: 'http://localhost:4200/torii/redirect.html',
-          scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-        },
-        'github-oauth2': {
-          apiKey: 'b09b72c66b65f345c0a9',
-          redirectUri: 'http://localhost:4200/torii/redirect.html',
-          scope: 'repo user'
-        }
-      }
-    }
+    // torii: {
+    //   sessionServiceName: 'session',
+    //   providers: {
+    //     'google-oauth2': {
+    //       apiKey: '1053797418071-cb49noe362osfv37v0jc25bkvqbum5qp.apps.googleusercontent.com',
+    //       redirectUri: 'http://localhost:4200/torii/redirect.html',
+    //       scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+    //     },
+    //     'github-oauth2': {
+    //       apiKey: 'b09b72c66b65f345c0a9',
+    //       redirectUri: 'http://localhost:4200/torii/redirect.html',
+    //       scope: 'repo user'
+    //     }
+    //   }
+    // },
+    serverhost:"",
   };
 
   if (environment === 'development') {
@@ -44,6 +45,17 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.serverhost = "localhost:4000";
+    ENV.torii  = {
+      sessionServiceName: 'session',
+      providers: {
+        'google-oauth2': {
+            apiKey: '1053797418071-cb49noe362osfv37v0jc25bkvqbum5qp.apps.googleusercontent.com',
+            redirectUri: 'http://localhost:4200/torii/redirect.html',
+            scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+          }
+      }
+    }
   }
 
   if (environment === 'test') {
@@ -60,7 +72,19 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
-  }
+    ENV.serverhost = "agiler.blr.stackroute.in/auth-service";
+    ENV.torii  = {
+      sessionServiceName: 'session',
+      providers: {
+        'google-oauth2': {
+            apiKey: '1053797418071-cb49noe362osfv37v0jc25bkvqbum5qp.apps.googleusercontent.com',
+            redirectUri: 'http://localhost:4200/torii/redirect.html',
+            scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+          }
+      }
+    }
+
+  } 
 
   return ENV;
 };
