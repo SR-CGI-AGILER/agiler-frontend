@@ -41,18 +41,19 @@ export default Controller.extend({
     // },
 
     addUsers() {
-      // console.log(this.get('teams'), "Iam inside the discuss controller")
+      console.log(this.get('teams'), "Iam inside the discuss controller")
       this.set('members', [])
       this.get('teams').map(eachTeam => {
         // console.log(eachTeam)
         eachTeam.teamMembers.map(eachMember => {
 
-          this.get('members').push(eachMember)
+          this.get('members').push(eachMember)            //
         })
       })
+
       console.log(this.get('members'), "I should be the members array")
       this.toggleProperty('showDialog');
-
+      
       // this.set('showuser', this.store.findAll('users'));
       // console.log(this.get('showuser'))
     },
@@ -71,8 +72,8 @@ export default Controller.extend({
         let roomid = this.get('roomId')
         this.store.findRecord('room',roomid).then(function(data){
           console.log(data.members,"I am data")
+          if (data.members.includes(userid) === false)
           data.members.push(userid)
-
         });
         return new Promise((resolve) => { 
           Ember.$.ajax({
