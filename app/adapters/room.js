@@ -4,6 +4,7 @@ import ENV from 'agiler-frontend/config/environment';
 
 export default DS.RESTAdapter.extend({
 	buildURL() {
+	
 		return `http://${ENV.collaborationServerHost}/api/v1/user/mddd34/rooms`
 	},
 	

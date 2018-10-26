@@ -4,37 +4,37 @@ import {
   inject as service
 } from '@ember/service';
 
-import Ember from 'ember';
-const {
-  getOwner
-} = Ember;
-
 export default Controller.extend({
   queryParams: ['roomId'],
   session: service('session'),
 
+  updated: Ember.computed('model', function () {
+    let date = new Date();
+    return date;
+  }),
+
   actions: {
-    sendButtonPressed(name) {
+    sendButtonPressed(date){
 
       let data = this.get('session').session.content.authenticated.userData;
+      let newMessage = {
+          roomname: this.get('param').room ,
+          messages: this.get('var'),
+          createdBy: data.name,
+          createdAt: date
+          
+      }
+      this.store.createRecord('message', newMessage).save();
+      this.set('var',"");
 
-      this.store.createRecord('message', {
-        roomname: this.get('param').room,
-        messages: this.get('var'),
-        createdBy: data.name,
-        createdAt: name
-
-      }).save();
-      this.set('var', "");
-
-      this.get('model').pushObject({
-        roomname: this.get('param').room,
-        messages: this.get('var'),
-        createdBy: "Atreya"
-
-
-      })
-    },
+      // Ember.run.later(this, function() {
+      //     this.reload();
+      //     console.log('reloading');
+      // }, 5000);
+      
+      this.get('model').pushObject(newMessage)
+        
+  },
 
     //   }).save();
     //   this.set('var', "");
@@ -47,7 +47,7 @@ export default Controller.extend({
         // console.log(eachTeam)
         eachTeam.teamMembers.map(eachMember => {
 
-          this.get('members').push(eachMember)            //
+          this.get('members').push(eachMember)            
         })
       })
 
@@ -82,6 +82,7 @@ export default Controller.extend({
             data: {}
             });
         }) 
+     
     }
   }
 });

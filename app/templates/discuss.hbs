@@ -1,20 +1,18 @@
 
 
 {{#paper-list}}
-    {{#paper-subheader}}topic name{{/paper-subheader}}
-    {{!-- {{session.currentUser.picture}} --}}
-    {{#each model.messages as |msg|}}
-        {{#paper-item class="md-3-line"}}
-
-        <img src={{session.currentUser.picture}} alt="no image" class="md-avatar">
-            <div class="md-list-item-text">
-            <div class="layout-row layout-align-space-between">
-                
-                <h3>{{msg.createdBy}}</h3>
-                <h4 class="time-head">{{msg.createdAt}}</h4>
-            </div>
-                <p>{{msg.messages}}</p>
-            </div>
+{{#paper-subheader}}topic name{{/paper-subheader}}
+{{#each model as |msg|}}
+{{#paper-item class="md-3-line"}}
+<img src={{session.currentUser.picture}} alt="no image" class="md-avatar">
+    
+<div class="md-list-item-text">
+    <div class="layout-row layout-align-space-between">
+        <h3>{{session.currentUser.name}}</h3>
+        <h4 class="time-head">{{format-date date=updated}}</h4>
+    </div>
+    <p>{{msg.messages}}</p>
+</div>
 {{paper-divider inset=true}}
         {{/paper-item}}
     {{/each}}
@@ -53,7 +51,8 @@
     <a href="#" {{action 'sendButtonPressed' var}}>
         {{paper-icon "send"}}
     </a>
-    <a href='#' {{action 'addUsers'}}>
+    
+    <a href="#" {{action 'addUsers'}}>
         {{paper-icon "add" }}
     </a>
 </div>
