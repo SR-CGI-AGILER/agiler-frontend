@@ -3,10 +3,10 @@ import DS from 'ember-data';
 export default DS.RESTSerializer.extend({
   
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
-    debugger
+    // debugger
     if(payload.data) {
       payload = payload.data.map(function(e) {
-        debugger
+        // debugger
          e.id = e._id
          return e
       })
@@ -25,8 +25,8 @@ export default DS.RESTSerializer.extend({
       project: payload
       
     };
-
-    // console.log(payload);
+    debugger
+    console.log(payload,"BLABLABLA");
     return this._super(store, primaryModelClass, payload, id, requestType);
   }
 });

@@ -17,7 +17,7 @@ export default DS.RESTAdapter.extend({
 //                 crossDomain: true,
 //                 type: 'POST',
 //                 contentType: 'application/json',
-//                 data: JSON.stringify(data),
+//                 data: JSON.stringify(data),data
 //                 url: `http://localhost:8000/api/v1/project`,
 //                 success: {
 //                     200: ()=>{

@@ -22,15 +22,23 @@
      {{/paper-list}}
 </div>
 
+
+
 <div class="layout-row layout-align-center-end">
-{{!-- {{#paper-button raised=true mini=true}}Mini{{/paper-button}} --}}
-{{!-- {{#paper-button raised=true primary=true fab=true}}Add Task{{/paper-button}} --}}
-<button type="button" class="block"><span class="plus">+</span>Add Task</button>
+  <button type="button" class="block"{{action "showPromptDialogAction" }}><span class="plus">+</span>Add Task</button>
+{{!-- {{#paper-button primary=true fab=true onClick=(action "showPromptDialogAction")}}+{{/paper-button}} --}}
+{{#if showPromptDialog}}
+  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin}}
+    {{#paper-dialog-content}}
+      {{!-- {{paper-input placeholder="projectName" autofocus=true value=projectName onChange=(action (mut projectName))}} --}}
+      {{paper-input placeholder="taskName" autofocus=true value=taskName onChange=(action (mut taskName))}}
+    {{/paper-dialog-content}}
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button primary=true onClick=(action "closePromptDialog" "cancel")}}Cancel{{/paper-button}}
+      {{#paper-button primary=true onClick=(action "ok")}}Ok{{/paper-button}}
+    {{/paper-dialog-actions}}
+
+  {{/paper-dialog}}
+{{/if}}
 </div>
-{{!-- <div class="layout-row layout-align-center-end">
-    {{paper-input label="Add Task" type="text" value=name2 block=true 
-    onChange=(action (mut name2))}}
-    {{#paper-button iconButton="true" onClick=(action "addTask" model)}}
-        {{paper-icon "add"}}
-    {{/paper-button}}
-</div> --}}
