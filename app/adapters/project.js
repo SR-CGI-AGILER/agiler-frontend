@@ -8,13 +8,14 @@ export default DS.RESTAdapter.extend({
 	//making a server call to projects
 	session: service('session'),
     buildURL(modelName, id, snapshot, requestType, query){
+        debugger
         if (query) {
             console.log(query.assignTo,"gggg")
-            return  `http://172.23.238.195:8000/api/v1/teams/${query.assignTo.teamId}/projects`;
+            return  `http://localhost:8000/api/v1/teams/${query.assignTo.teamId}/projects`;
         }else {
             let memberId =this.get('session').session.content.authenticated.userdata.id;
             console.log(memberId,"hgfchgdasghsagh")
-            return `http://172.23.238.195:8000/api/v1/member/${memberId}/projects/`;
+            return `http://localhost:8000/api/v1/member/${memberId}/projects/`;
         }
         debugger
     },
