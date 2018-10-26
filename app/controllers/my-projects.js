@@ -11,20 +11,18 @@ export default Controller.extend({
                 this.toggleProperty('showPromptDialog');
             },
             closePromptDialog(){
-                // console.log(this.getProperties('teamName'));
+            
                 this.toggleProperty('showPromptDialog');
             },
             cancel() {
 
             },
             ok(){
-                console.log(this.getProperties('teamName'));
+                
                let newdata = {
                     projectName: this.getProperties('projectName'),
                     assignTo: [{teamName:this.get('teamName')}]
                 };
-                console.log(newdata);
-                //console.log(JSON.stringify(newdata));
                     return new Promise((resolve) => {
                         Em.$.ajax({
                             async: true,
@@ -40,8 +38,16 @@ export default Controller.extend({
                             }
                         })
                     })
+                },
+                deleteProject(project){
+                
+                    this.store.findRecord('project', project.id, {reload:true}).then(data => {
+                        data.deleteRecord();
+                        data.save();
+                    })
                 }
             }
+
    
 
         //         if (this.getProperties('name2').name2) {
@@ -57,7 +63,7 @@ export default Controller.extend({
         //             assignTo: newProject.teamName
         //           })
         //           createActivity.save();
-        //           console.log(createActivity)
+        //          
         //         }
         //     }
             

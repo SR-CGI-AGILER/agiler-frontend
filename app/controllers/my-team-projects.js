@@ -16,7 +16,7 @@ export default Controller.extend({
         this.toggleProperty('showPromptDialog');
     },
     closePromptDialog(){
-        // console.log(this.getProperties('teamName'));
+
         this.toggleProperty('showPromptDialog');
     },
     cancel() {
@@ -24,15 +24,11 @@ export default Controller.extend({
     },
     ok(){
         
-        console.log(this.getProperties('teamName'));
        let newdata = {
             projectName: this.getProperties('projectName'),
             assignTo: [{teamName:this.get('teamName')}]
         };
         
-        // console.log(query.assignTo);
-        //console.log(JSON.stringify(newdata));
-        console.log(this.get('teamId'), "I think the team id should get printed here")
             return new Promise((resolve) => {
                 Em.$.ajax({
                     async: true,
@@ -47,6 +43,13 @@ export default Controller.extend({
                         }
                     }
                 })
+            })
+        },
+        deleteProject(project){
+                
+            this.store.findRecord('project', project.id, {reload:true}).then(data => {
+                data.deleteRecord();
+                data.save();
             })
         }
     }

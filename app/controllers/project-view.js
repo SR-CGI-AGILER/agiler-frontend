@@ -7,10 +7,4 @@ export default Controller.extend({
     store: Ember.inject.service(),
 
     projectDetails: []
-    // deleteTask(x){
-    //     this.store.findRecord('task', x.id).then(data => {
-    //         data.set('archiveTask',true)
-    //         data.save();
-    //     })
-    // }
 });

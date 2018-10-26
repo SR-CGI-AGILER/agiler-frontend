@@ -5,9 +5,9 @@ export default Controller.extend({
 
     actions: {
         transitionToMyTeamProjects(team){
-            // console.log(team._internalModel.id,"teams")
+ 
             let temp  = team._internalModel.id 
-            // console.log(temp,"whta is this?");
+           
 
             // this.store.query('project', { assignTo: temp})
             this.transitionToRoute('my-team-projects', temp , {queryParams: {  modelName: team.constructor.modelName}});
@@ -19,7 +19,7 @@ export default Controller.extend({
                 this.toggleProperty('showPromptDialog');
             },
             closePromptDialog(){
-                // console.log(this.getProperties('teamName'));
+             
                 this.toggleProperty('showPromptDialog');
             },
             cancel() {
@@ -33,9 +33,6 @@ export default Controller.extend({
              };
 
              let memberId =this.get('session').session.content.authenticated.userdata.id;
-            console.log(memberId,"hgfchgdasghsagh")
-             console.log(newdata);
-             //console.log(JSON.stringify(newdata));
                  return new Promise((resolve) => {
                      Em.$.ajax({
                          async: true,
@@ -51,8 +48,14 @@ export default Controller.extend({
                          }
                      })
                  })
-             }
-         }
+             },
+             deleteTeam(team){
+                this.store.findRecord('team', team.id, {reload:true}).then(data => {
+                    data.deleteRecord();
+                    data.save();
+                })
+            }
+        }
 
         
 });
