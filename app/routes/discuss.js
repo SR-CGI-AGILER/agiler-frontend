@@ -7,18 +7,25 @@ export default Route.extend({
 
     session:service('session'),
     
-    model(param) {
-        this.set('param', param)
-        console.log(param.room)
+        async model(param) {
+            let messages = [];
+            this.set('param', param)
+        
         let data = this.get('session').currentUser;
-        console.log(data, "In route");
-        return this.store.query('message', {roomName: param.room})
         
-        
-
+       await this.set('messages', this.store.query('message', {roomName: param.room}).then(data => {
+            
+                data.toArray().map(function(each) {
+                        messages.push(each)
+                })            
+        }))
+        return messages
     },
-    setupController(controller, model ){
+    
+    async setupController(controller, model ){
         this._super(controller, model);
+        
+        controller.set('model', model)
         controller.set('param', this.get('param'))
     }
 });

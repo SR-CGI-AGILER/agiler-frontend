@@ -2,36 +2,36 @@ import Controller from '@ember/controller';
 
 import {inject as service} from '@ember/service';
 
-import Ember from 'ember';
-const {
-  getOwner
-} = Ember;
-
 export default Controller.extend({
 
     session:service('session'),
+
+    updated: Ember.computed('model', function () {
+        let date = new Date();
+        return date;
+      }),
     
     actions: {
-        sendButtonPressed(name){
+         sendButtonPressed(date){
 
             let data = this.get('session').session.content.authenticated.userData;
-            
-            this.store.createRecord('message', {
+            let newMessage = {
                 roomname: this.get('param').room ,
                 messages: this.get('var'),
                 createdBy: data.name,
-                createdAt: name
+                createdAt: date
                 
-            }).save();
+            }
+            this.store.createRecord('message', newMessage).save();
             this.set('var',"");
 
-            this.get('model').pushObject({
-                roomname: this.get('param').room ,
-                messages: this.get('var'),
-                createdBy: "Atreya"
-                
-                
-            })
+            // Ember.run.later(this, function() {
+            //     this.reload();
+            //     console.log('reloading');
+            // }, 5000);
+            
+            this.get('model').pushObject(newMessage)
+              
         },
 
         addUsers() {

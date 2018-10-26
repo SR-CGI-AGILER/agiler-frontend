@@ -6,8 +6,8 @@
     
 <div class="md-list-item-text">
     <div class="layout-row layout-align-space-between">
-        <h3>{{msg.createdBy}}</h3>
-        <h4 class="time-head">{{msg.createdAt}}</h4>
+        <h3>{{session.currentUser.name}}</h3>
+        <h4 class="time-head">{{format-date date=updated}}</h4>
     </div>
     <p>{{msg.messages}}</p>
 </div>
