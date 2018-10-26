@@ -19,7 +19,7 @@ export default Controller.extend({
                 let data = this.get('session').session.content.authenticated.userdata;
                 this.get('session').set('currentUser',data);
                 if(token){
-                    this.transitionToRoute('create-team.team-name');
+                    this.transitionToRoute('my-teams');
                 }
             }).catch(err=>{
                 console.log(err);

@@ -10,9 +10,9 @@ export default Route.extend(AuthenticatedRouteMixin,{
         
     },  
     model(){
-        let a = this.store.findAll('team');
-        // retun a
-        console.log(a);
+        // debugger
+        let a = this.store.findAll('project');
+        
         // a.map(function(e){
         //     console.log("jddhjhjh")
         //     this.store.query('project',{assignTo:[{_id:e._id}]})

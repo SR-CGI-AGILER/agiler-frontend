@@ -40,6 +40,7 @@ module.exports = function(environment) {
     },
     collaborationServerHost: "",
     activityServerHost: ""
+    
   };
 
   if (environment === 'development') {
@@ -76,6 +77,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.activityServerHost="agiler.blr.stackroute.in/activity-service"
     // here you can enable a production-specific feature
     ENV.serverhost = "agiler.blr.stackroute.in/auth-service";
     ENV.torii  = {
