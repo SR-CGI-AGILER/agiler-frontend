@@ -2,14 +2,20 @@ import DS from 'ember-data';
 
 export default DS.RESTSerializer.extend({
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
-    // let data = payload.payload.map(function (e) {
-    //   e.id = e.id
-    //   return e
-    // });
+
+    payload = payload.data.map(function (e) {
+      e.id = e._id
+      return e
+    });
+    // console.log(payload, "this is the payload")
+
     payload = {
-      users: payload.payload
-    }
-    console.log(payload, "this is the serializer")
+
+      team: payload
+
+    };
+
+    // console.log(payload);
     return this._super(store, primaryModelClass, payload, id, requestType);
   }
 });
