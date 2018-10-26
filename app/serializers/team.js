@@ -7,7 +7,7 @@ export default DS.RESTSerializer.extend({
           e.id = e._id
           return e
         });
-        console.log(payload)
+      
      
         payload = {
          
@@ -15,7 +15,7 @@ export default DS.RESTSerializer.extend({
           
         };
     
-        // console.log(payload);
+    
         return this._super(store, primaryModelClass, payload, id, requestType);
       }
 });

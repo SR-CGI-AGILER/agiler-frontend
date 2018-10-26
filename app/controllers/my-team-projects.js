@@ -16,7 +16,7 @@ export default Controller.extend({
         this.toggleProperty('showPromptDialog');
     },
     closePromptDialog(){
-        // console.log(this.getProperties('teamName'));
+
         this.toggleProperty('showPromptDialog');
     },
     cancel() {
@@ -24,7 +24,6 @@ export default Controller.extend({
     },
     ok(){
         
-        console.log(this.getProperties('teamName'));
        let newdata = {
             projectName: this.getProperties('projectName'),
             assignTo: [{teamName:this.get('teamName')}]
@@ -32,7 +31,7 @@ export default Controller.extend({
         
         // console.log(query.assignTo);
         //console.log(JSON.stringify(newdata));
-        console.log(this.get('teamId'), "I think the team id should get printed here")
+        // console.log(this.get('teamId'), "I think the team id should get printed here")
         let createProject = {
         projectName : newdata.projectName.projectName,
         assignTo: [{teamId:this.get('teamId')}]
@@ -42,6 +41,13 @@ export default Controller.extend({
            console.log(createProject, "this is the guy we need to catch hold offf..!!!")
            this.get('model').projects.pushObject(createProject)
         //    console.log(this.get('model').getProperties('tasks'), "Ssdfsdfsafsdf")
+    },
+        deleteProject(project){
+                
+            this.store.findRecord('project', project.id, {reload:true}).then(data => {
+                data.deleteRecord();
+                data.save();
+            })
         }
     }
 

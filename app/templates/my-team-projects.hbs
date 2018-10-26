@@ -1,12 +1,14 @@
 {{outlet}}
 <div class="container">
 
-{{#each model as |project|}}
+{{#each model.projects as |project|}}
 	{{#paper-list}}
 {{#paper-item}}
    {{paper-icon "description"}}
  <p {{action "transitionToProjectView" project}}>{{project.projectName}}</p>
-
+{{#paper-button iconButton=true onClick=(action "deleteProject" project)}}  
+ {{paper-icon "delete"}}
+       {{/paper-button}}
  
  {{paper-divider}}
  

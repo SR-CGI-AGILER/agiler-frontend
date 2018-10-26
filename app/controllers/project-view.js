@@ -31,8 +31,8 @@ export default Controller.extend({
             projectId: this.get('projectId').id
             // assignTo: [{teamName:this.get('teamName')}]
         };
-        console.log(this.get('projectId').id,"hghghg");
-        console.log(newdata.taskName.taskName)
+        // console.log(this.get('projectId').id,"hghghg");
+        // console.log(newdata.taskName.taskName)
         //console.log(JSON.stringify(newdata));
            let createTask = {
             taskName : newdata.taskName.taskName,
@@ -40,7 +40,7 @@ export default Controller.extend({
         }
            this.store.createRecord('task',createTask).save()
            
-           console.log(createTask, "this is the guy we need to catch hold offf..!!!")
+        //    console.log(createTask, "this is the guy we need to catch hold offf..!!!")
            this.get('model').tasks.pushObject(createTask)
         //    console.log(this.get('model').getProperties('tasks'), "Ssdfsdfsafsdf")
         }

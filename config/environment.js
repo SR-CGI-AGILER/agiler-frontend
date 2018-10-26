@@ -35,7 +35,8 @@ module.exports = function(environment) {
           scope: 'repo user'
         }
       }
-    }
+    },
+    activityServerHost : "",
   };
 
   if (environment === 'development') {
@@ -44,6 +45,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.activityServerHost = "localhost:8000";
+
   }
 
   if (environment === 'test') {
@@ -59,6 +62,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.activityServerHost="agiler.blr.stackroute.in/activity-service"
     // here you can enable a production-specific feature
   }
 
