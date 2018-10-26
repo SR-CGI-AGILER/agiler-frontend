@@ -88,12 +88,13 @@ module.exports = function(environment) {
           }
       }
     }
-
-  } 
     ENV.collaborationServerHost = "agiler.blr.stackroute.in/collabration-service";
     ENV.activityServerHost = "agiler.blr.stackroute.in/activity-service"
 
-  }
+  } 
+    
+
+  
 
   return ENV;
 };
