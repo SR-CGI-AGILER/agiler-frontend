@@ -1,9 +1,10 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import ENV from 'agiler-frontend/config/environment';
 
 export default DS.RESTAdapter.extend({
 	buildURL() {
-		return `http://localhost:3000/api/v1/user/mddd34/rooms`
+		return `http://${ENV.collaborationServerHost}/api/v1/user/mddd34/rooms`
 	},
 	
 	createRecord(store, type, snapshot) {
@@ -11,7 +12,7 @@ export default DS.RESTAdapter.extend({
 		return new Promise((resolve) => { 
 			Ember.$.ajax({
 				type: "POST",
-        		url: `http://localhost:3000/api/v1/chat-room/${snapshot.attr('roomName')}`,
+        		url: `http://${ENV.collaborationServerHost}/api/v1/chat-room/${snapshot.attr('roomName')}`,
             	data: { "members" : "mddd34" }
             });
 		})

@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-
+import ENV from 'agiler-frontend/config/environment';
 export default DS.RESTAdapter.extend({
     // buildURL(modelName, id, snapshot, requestType, query){
 
@@ -25,7 +25,7 @@ export default DS.RESTAdapter.extend({
     //     })
     // },
     buildURL() {
-        return `http://localhost:8000/api/v1/team/deddd8d2-e041-4fbb-a8ed-3c079af9930d`
+        return `http://${ENV.activityServerHost}/api/v1/team/deddd8d2-e041-4fbb-a8ed-3c079af9930d`
     },
     // urlForQuery(query, modelName) {
     //     debugger

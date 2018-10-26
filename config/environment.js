@@ -35,7 +35,9 @@ module.exports = function(environment) {
           scope: 'repo user'
         }
       }
-    }
+    },
+    collaborationServerHost: "",
+    activityServerHost: ""
   };
 
   if (environment === 'development') {
@@ -44,6 +46,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.collaborationServerHost = "localhost:3000";
+    ENV.activityServerHost = "localhost:8000";
   }
 
   if (environment === 'test') {
@@ -60,6 +64,8 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.collaborationServerHost = "agiler.blr.stackroute.in/collabration-service";
+
   }
 
   return ENV;

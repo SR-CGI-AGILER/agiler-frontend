@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-
+import ENV from 'agiler-frontend/config/environment';
 import {
   inject as service
 } from '@ember/service';
@@ -41,7 +41,7 @@ export default Controller.extend({
     // },
 
     addUsers() {
-      console.log(this.get('teams'), "Iam inside the discuss controller")
+      // console.log(this.get('teams'), "Iam inside the discuss controller")
       this.set('members', [])
       this.get('teams').map(eachTeam => {
         // console.log(eachTeam)
@@ -51,7 +51,7 @@ export default Controller.extend({
         })
       })
 
-      console.log(this.get('members'), "I should be the members array")
+      // console.log(this.get('members'), "I should be the members array")
       this.toggleProperty('showDialog');
       
       // this.set('showuser', this.store.findAll('users'));
@@ -71,14 +71,14 @@ export default Controller.extend({
        let roomname = this.get('param').room
         let roomid = this.get('roomId')
         this.store.findRecord('room',roomid).then(function(data){
-          console.log(data.members,"I am data")
+          // console.log(data.members,"I am data")
           if (data.members.includes(userid) === false)
           data.members.push(userid)
         });
         return new Promise((resolve) => { 
           Ember.$.ajax({
             type: "PUT",
-            url: `http://localhost:3000/api/v1/chat-room/invite/${roomname}/user/${userid}`,
+            url: `http://${ENV.collaborationServerHost}/api/v1/chat-room/invite/${roomname}/user/${userid}`,
             data: {}
             });
         }) 

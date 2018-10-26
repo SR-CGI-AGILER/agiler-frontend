@@ -36,15 +36,11 @@ export default Route.extend({
     // console.log(data2, "this is the return in the model")
     return data2
   },
-  //   setupController(controller, model) {
-  //       this._super(controller, model);
-  //       this.controller.set('users', this.store.findAll('users'))
-  //   }
+  
   setupController(controller, model) {
     this._super(controller, model);
     controller.set('param', this.get('param'))
-    // console.log(this.get('param'),"param ....")
-    // console.log(this.get('teams'), "this is a problem then ...")
+    
     controller.set('teams', this.get('teams'))
 
   }
