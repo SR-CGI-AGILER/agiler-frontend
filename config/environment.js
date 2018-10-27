@@ -23,21 +23,7 @@ module.exports = function(environment) {
     },
     
     serverhost:"",
-    torii: {
-      sessionServiceName: 'session',
-      providers: {
-        'google-oauth2': {
-          apiKey: '1053797418071-cb49noe362osfv37v0jc25bkvqbum5qp.apps.googleusercontent.com',
-          redirectUri: 'http://localhost:4200/torii/redirect.html',
-          scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-        },
-        'github-oauth2': {
-          apiKey: 'b09b72c66b65f345c0a9',
-          redirectUri: 'http://localhost:4200/torii/redirect.html',
-          scope: 'repo user'
-        }
-      }
-    },
+    torii: {},
     collaborationServerHost: "",
     activityServerHost: ""
     
@@ -85,7 +71,7 @@ module.exports = function(environment) {
       providers: {
         'google-oauth2': {
             apiKey: '1053797418071-cb49noe362osfv37v0jc25bkvqbum5qp.apps.googleusercontent.com',
-            redirectUri: 'http://localhost:4200/torii/redirect.html',
+            redirectUri: 'http://agiler.blr.stackroute.in/torii/redirect.html',
             scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
           }
       }
