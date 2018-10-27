@@ -50,23 +50,6 @@ export default Controller.extend({
 
    
 
-        //         if (this.getProperties('name2').name2) {
-        //           let newProject = {
-        //               // id: Math.random(Math.floor(100000)),
-        //             projectName: this.getProperties('projectName').projectName,
-        //             teamName: this.getProperties('teamName').teamName
-        //           }
-        //           this.newCard.pushObject(newProject);
-        //           let createActivity = this.store.createRecord('project', {
-        //               // id: newProject.id,
-        //             projectName: newProject.projectName,
-        //             assignTo: newProject.teamName
-        //           })
-        //           createActivity.save();
-        //          
-        //         }
-        //     }
-            
-        // }  
+        
 
 });
