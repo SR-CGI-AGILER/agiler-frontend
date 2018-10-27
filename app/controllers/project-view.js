@@ -6,5 +6,14 @@ export default Controller.extend({
     // modelName: null
     store: Ember.inject.service(),
 
-    projectDetails: []
+    projectDetails: [],
+    actions :{
+    deleteTask(x){
+        console.log(x.id);
+        this.store.findRecord('task', x.id, {reload:true}).then(data => {
+            data.deleteRecord();
+            data.save();
+        })
+    }
+}
 });
