@@ -7,7 +7,8 @@
 	{{#paper-list}}
 {{#paper-item}}
    {{paper-icon "description"}}
- <p {{action "transitionToMyTeamProjects" team}} >{{team.teamName}}</p>
+
+ <p {{action "transitionToMyTeamProjects" team}} >{{team.teamName}} {{team.id}}</p>
 {{#paper-button iconButton=true onClick=(action "deleteTeam" team)}}  
  {{paper-icon "delete"}}
        {{/paper-button}}

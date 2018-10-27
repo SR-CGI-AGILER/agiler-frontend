@@ -31,12 +31,12 @@ export default DS.RESTAdapter.extend({
     //     // }
     // },
 	createRecord(store, type, snapshot) {
-        // debugger
         let  newdata = this.serialize(snapshot)
+        // debugger
         // console.log(newdata)
         // console.log(newdata);
         // console.log(newdata.assignTo[0].teamId,"kjbsdckbjdsc");
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         Em.$.ajax({
             async: true,
             crossDomain: true,
@@ -44,11 +44,8 @@ export default DS.RESTAdapter.extend({
             contentType: 'application/json',
             data: JSON.stringify(newdata),
             url:`http://${ENV.activityServerHost}/api/v1/project/${newdata.assignTo[0].teamId}`,
-            success: {
-                200: ()=>{
-                    Em.run(null, resolve);
-                }
-            }
+            success: resolve,
+            error: reject
         })
     })
     },

@@ -18,7 +18,7 @@ createRecord(store, type, snapshot) {
         let memberId =this.get('session').session.content.authenticated.userdata.id;
         let  newdata = this.serialize(snapshot)
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         Em.$.ajax({
             async: true,
             crossDomain: true,
@@ -26,11 +26,7 @@ createRecord(store, type, snapshot) {
             contentType: 'application/json',
             data: JSON.stringify(newdata),
             url:`http://${ENV.activityServerHost}/api/v1/team/${memberId}`,
-            success: {
-                200: ()=>{
-                    Em.run(null, resolve);
-                }
-            }
+            success: resolve
         })
     })
    },

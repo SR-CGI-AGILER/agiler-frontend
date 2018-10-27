@@ -5,6 +5,8 @@ export default Route.extend({
     let data = {
         teams: []
     };
+    // this.set('teamId', params.id)
+    // console.log()
     await this.store.findAll('team').then((specificTeam) => {
         // console.log(specificTeamProject, "this is query my team record")
         // debugger
