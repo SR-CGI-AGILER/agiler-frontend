@@ -10,25 +10,26 @@ export default DS.RESTAdapter.extend({
 //  console.log(memberId,"hgfchgdasghsagh")
         return `http://${ENV.activityServerHost}/api/v1/teams/${memberId}`;
     },
-//     createRecord(store, type, snapshot) {
-//         let data = this.serialize(snapshot);
+createRecord(store, type, snapshot) {
+        let memberId =this.get('session').session.content.authenticated.userdata.id;
+        let  newdata = this.serialize(snapshot)
 
-//         return new Promise((resolve) => {
-//             Em.$.ajax({
-//                 async: true,
-//                 crossDomain: true,
-//                 type: 'POST',
-//                 contentType: 'application/json',
-//                 data: JSON.stringify(data),data
-//                 url: `http://localhost:8000/api/v1/project`,
-//                 success: {
-//                     200: ()=>{
-//                         Em.run(null, resolve);
-//                     }
-//                 }
-//             })
-//         })
-//     },
+    return new Promise((resolve) => {
+        Em.$.ajax({
+            async: true,
+            crossDomain: true,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(newdata),
+            url:`http://${ENV.activityServerHost}/api/v1/team/${memberId}`,
+            success: {
+                200: ()=>{
+                    Em.run(null, resolve);
+                }
+            }
+        })
+    })
+   },
 
     deleteRecord(store, type, snapshot){
   
