@@ -2,11 +2,17 @@ import DS from 'ember-data';
 
 export default DS.RESTSerializer.extend({
     normalizeResponse(store, primaryModelClass, payload, id, requestType) {
-       
-        payload = payload.data.map(function(e) {
-          e.id = e._id
-          return e
-        });
+
+        if (requestType === 'createRecord') {
+           
+           payload.data.id = payload.data._id
+           payload = payload.data
+        }else if ( requestType === 'findAll' ) {
+          payload = payload.data.map(function(e) {
+            e.id = e._id
+            return e
+          });
+        }
       
      
         payload = {

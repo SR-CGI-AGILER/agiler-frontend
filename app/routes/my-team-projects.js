@@ -2,26 +2,25 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
     teamId: null,
+    init() {
+        // console.log('is this hook getting called ??')
+    },  
 
-    async model(params) {
+     async model(params) {
         // debugger
         let data = {
-            // project: this.store.peekRecord('project', { assignTo: { teamId: params.id } }),
             projects: []
         };
 
         this.set('teamId', params.id)
-        // console.log(params.id, "hbbadcbhdc")
-        //    return this.store.query('project', {assignTo:{teamId:params.id}})
-        await this.store.query('project', { assignTo: { teamId: params.id } }).then((specificTeamProject) => {
-            // console.log(specificTeamProject, "this is query my team record")
-            // debugger
+        // console.log(params.id, "my projects of a perticular team")
+       await this.store.query('project', { assignTo: { teamId: params.id } }).then((specificTeamProject) => {
+            
             specificTeamProject.toArray().map(function (eachProject) {
                 data.projects.push(eachProject)
 
             })
         })
-        // console.log(data, "is this comming inthe model actually ??")
         return data
     },
     setupController(controller, model) {

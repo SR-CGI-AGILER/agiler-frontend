@@ -11,7 +11,7 @@ export default DS.RESTAdapter.extend({
     createRecord(store, type, snapshot){
         // debugger
         // console.log(snapshot);
-        debugger
+        // debugger
         let  newdata = this.serialize(snapshot)
         // console.log(newdata)
         // console.log(newdata.taskName);
