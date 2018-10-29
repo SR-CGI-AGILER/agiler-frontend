@@ -9,7 +9,7 @@ export default DS.RESTSerializer.extend({
 		payload={
 			room : data
 		}	
-		console.log(payload)	
+			
 	return this._super(store, primaryModelClass, payload, id, requestType);
 	}
 });

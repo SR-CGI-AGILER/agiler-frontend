@@ -1,11 +1,12 @@
 import ToriiAuthenticator from 'ember-simple-auth/authenticators/torii';
 import Ember from 'ember';
 const  { RSVP, $ ,inject: {service} } = Ember
-
+import ENV from 'agiler-frontend/config/environment';
 
 export default ToriiAuthenticator.extend({
     torii: service('torii'),
     session: service('session'),
+    server: "http://"+ENV.serverhost+"/auth/google",
     authenticate(provider, options){
           
         return this.get('torii').open(provider, options)
@@ -14,7 +15,7 @@ export default ToriiAuthenticator.extend({
              
             return new RSVP.Promise((resolve, reject) =>  {
                      
-                return $.ajax('http://localhost:4000/auth/google', {
+                return $.ajax(this.server, {
                     type: 'POST',
                     data: {
                         code: authData.authorizationCode,

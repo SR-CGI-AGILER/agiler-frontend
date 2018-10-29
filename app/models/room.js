@@ -2,5 +2,6 @@ import DS from 'ember-data';
 const { attr } = DS
 
 export default DS.Model.extend({
-    roomName : attr('string')
+    roomName : attr('string'),
+    members : attr()
 });

@@ -9,19 +9,17 @@ export default Controller.extend({
         authenticateSession(){
             
             let session = this.get('session');
-            //cgeonsole.log ( session.get("data"), "asdklasdlkdkjlsdflkjjsfjkdh")
+            
             this.get('session').authenticate('authenticator:torii', 'google-oauth2').then(()=>{
-                // debugger
-                // session.
-                // console.log(this.get('session').access_token);
+                
                 let token = this.get('session').session.content.authenticated.responseObj.jwtToken;
-                // console.log(this.get('session').session.content.authenticated);
+                
+                this.get('session').set('userToken',token);
+                
                 let data = this.get('session').session.content.authenticated.userdata;
                 this.get('session').set('currentUser',data);
-                document.cookie = `jwtToken=${token}`;
-                console.log(document.cookie,"Ember Cookie");
                 if(token){
-                    this.transitionToRoute('create-team.team-name');
+                    this.transitionToRoute('my-teams');
                 }
             }).catch(err=>{
                 console.log(err);

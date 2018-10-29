@@ -21,6 +21,8 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+    
+    serverhost:"",
     torii: {
       sessionServiceName: 'session',
       providers: {
@@ -35,7 +37,10 @@ module.exports = function(environment) {
           scope: 'repo user'
         }
       }
-    }
+    },
+    collaborationServerHost: "",
+    activityServerHost: ""
+    
   };
 
   if (environment === 'development') {
@@ -44,6 +49,19 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.serverhost = "localhost:4000";
+    ENV.torii  = {
+      sessionServiceName: 'session',
+      providers: {
+        'google-oauth2': {
+            apiKey: '1053797418071-cb49noe362osfv37v0jc25bkvqbum5qp.apps.googleusercontent.com',
+            redirectUri: 'http://localhost:4200/torii/redirect.html',
+            scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+          }
+      }
+    }
+    ENV.collaborationServerHost = "localhost:3000";
+    ENV.activityServerHost = "localhost:8000";
   }
 
   if (environment === 'test') {
@@ -59,8 +77,26 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.activityServerHost="agiler.blr.stackroute.in/activity-service"
     // here you can enable a production-specific feature
-  }
+    ENV.serverhost = "agiler.blr.stackroute.in/auth-service";
+    ENV.torii  = {
+      sessionServiceName: 'session',
+      providers: {
+        'google-oauth2': {
+            apiKey: '1053797418071-cb49noe362osfv37v0jc25bkvqbum5qp.apps.googleusercontent.com',
+            redirectUri: 'http://localhost:4200/torii/redirect.html',
+            scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+          }
+      }
+    }
+    ENV.collaborationServerHost = "agiler.blr.stackroute.in/collabration-service";
+    ENV.activityServerHost = "agiler.blr.stackroute.in/activity-service"
+
+  } 
+    
+
+  
 
   return ENV;
 };

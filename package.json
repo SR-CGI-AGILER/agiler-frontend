@@ -30,6 +30,7 @@
     "ember-cli-htmlbars": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^1.0.3",
     "ember-cli-inject-live-reload": "^1.8.2",
+    "ember-cli-moment-shim": "^3.7.1",
     "ember-cli-qunit": "^4.3.2",
     "ember-cli-sass": "^8.0.1",
     "ember-cli-sri": "^2.1.1",
@@ -39,6 +40,7 @@
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-moment": "^7.8.0",
     "ember-paper": "^1.0.0-beta.18",
     "ember-resolver": "^5.0.1",
     "ember-simple-auth": "^1.7.0",
@@ -47,10 +49,13 @@
     "eslint-plugin-ember": "^5.2.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.7.1",
-    "torii": "^0.10.1",
-    "sass": "^1.14.3"
+    "sass": "^1.14.3",
+    "torii": "^0.10.1"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
+  },
+  "dependencies": {
+    "moment": "^2.22.2"
   }
 }
