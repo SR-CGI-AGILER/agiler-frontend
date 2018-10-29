@@ -1,14 +1,21 @@
 import Route from '@ember/routing/route';
-
-
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import {
-  inject as service
-} from '@ember/service';
+    inject as service
+  } from '@ember/service';
 
-export default Route.extend({
-  // teams: null,
+
+export default Route.extend(AuthenticatedRouteMixin,{
   param: null,
   session: service('session'),
+  beforeModel(){
+    let token = this.get('session').userToken;
+
+    if(!token){
+        this.transitionTo('index');
+    }
+    
+},  
   async model(param) {
 
 
@@ -34,37 +41,9 @@ export default Route.extend({
     })
     return messages
 
-    // let data2 = {
-    //   messages: this.store.query('message', {
-    //     roomName: param.room
-    //   }),
-    // }
-    //   return data2
+  
   },
-  // messages: this.store.findAll('message'),
-  // users: this.store.findAll('user')
-
-
-
-
-
-
-  // session:service('session'),
-
-  //     async model(param) {
-  //         let messages = [];
-  //         this.set('param', param)
-
-  //     let data = this.get('session').currentUser;
-
-  //    await this.set('messages', this.store.query('message', {roomName: param.room}).then(data => {
-
-  //             data.toArray().map(function(each) {
-  //                     messages.push(each)
-  //             })            
-  //     }))
-  //     return messages
-  // },
+  
 
   async setupController(controller, model) {
     this._super(controller, model);
@@ -73,6 +52,5 @@ export default Route.extend({
     controller.set('param', this.get('param'))
     controller.set('teams', this.get('teams'))
   }
-  // console.log(data2, "this is the return in the model")
-
+  
 });

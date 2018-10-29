@@ -4,20 +4,21 @@
 
 <div class="container">
 
-	{{#each model as |team|}}
+	{{#each model as |project|}}
 	{{#paper-list}}
 {{#paper-item}}
    {{paper-icon "description"}}
- <p {{action "transitionToProjectView" project}}>{{team.projectName}}</p>
-
- 
+ <p {{action "transitionToProjectView" project}}>{{project.projectName}}</p>
+{{#paper-button iconButton=true onClick=(action "deleteProject" project)}}  
+ {{paper-icon "delete"}}
+       {{/paper-button}}
  {{paper-divider}}
- 
+
      {{/paper-item}}
     {{/paper-list}}
     {{/each}}
 
-<div class="layout-row layout-align-center-end">
+{{!-- <div class="layout-row layout-align-center-end">
 {{#paper-button primary=true fab=true onClick=(action "showPromptDialogAction")}}+{{/paper-button}}
 {{#if showPromptDialog}}
   {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin}}
@@ -33,5 +34,5 @@
 
   {{/paper-dialog}}
 {{/if}}
-</div>
+</div> --}}
 </div>

@@ -1,12 +1,15 @@
 {{outlet}}
+
+
 <div class="container">
 
-{{#each model.projects as |project|}}
+	{{#each model.teams as |team|}}
 	{{#paper-list}}
 {{#paper-item}}
    {{paper-icon "description"}}
- <p {{action "transitionToProjectView" project}}>{{project.projectName}}</p>
-{{#paper-button iconButton=true onClick=(action "deleteProject" project)}}  
+
+ <p {{action "transitionToMyTeamProjects" team}} >{{team.teamName}} {{team.id}}</p>
+{{#paper-button iconButton=true onClick=(action "deleteTeam" team)}}  
  {{paper-icon "delete"}}
        {{/paper-button}}
  
@@ -15,13 +18,15 @@
      {{/paper-item}}
     {{/paper-list}}
     {{/each}}
-    <div class="layout-row layout-align-center-end">
+
+<div class="layout-row layout-align-center-end">
 {{#paper-button primary=true fab=true onClick=(action "showPromptDialogAction")}}+{{/paper-button}}
 {{#if showPromptDialog}}
   {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin}}
     {{#paper-dialog-content}}
-      {{paper-input placeholder="projectName" autofocus=true value=projectName onChange=(action (mut projectName))}}
-      {{!-- {{paper-input placeholder="teamName" autofocus=true value=teamName onChange=(action (mut teamName))}} --}}
+      {{paper-input placeholder="teamName" autofocus=true value=teamName onChange=(action (mut teamName))}}
+      {{!-- {{paper-input placeholder="" autofocus=true value=projectName onChange=(action (mut projectName))}} --}}
+
     {{/paper-dialog-content}}
     {{#paper-dialog-actions class="layout-row"}}
       <span class="flex"></span>
