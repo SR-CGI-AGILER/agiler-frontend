@@ -1,11 +1,16 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 import ENV from 'agiler-frontend/config/environment';
+import {
+	inject as service
+  } from '@ember/service';
 
 export default DS.RESTAdapter.extend({
+	session: service('session'),
 	buildURL() {
-	
-		return `http://${ENV.collaborationServerHost}/api/v1/user/mddd34/rooms`
+		debugger
+		let userid = this.get('session').session.content.authenticated.userdata.id;
+		return `http://${ENV.collaborationServerHost}/api/v1/user/${userid}/rooms`
 	},
 	
 	createRecord(store, type, snapshot) {
