@@ -11,7 +11,7 @@
     {{#paper-list}}
   {{#each model.tasks as |x|}}
     {{#paper-item as |controls|}}
-     {{controls.checkbox value=x.enabled secondary=true onChange=(action (mut x.enabled))}}
+     {{controls.checkbox value=x.enabled secondary=true onChange=(action "markTaskComplete" x)}}
      
       <div class="md-list-item-text">
         {{x.taskName}} 

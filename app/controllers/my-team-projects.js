@@ -24,13 +24,31 @@ export default Controller.extend({
     cancel() {
 
     },
+    showDialogAction(){
+        this.toggleProperty('showDialog');
+    },
+    closeDialogAction(){
+        this.toggleProperty('showDialog');
+    },
+    ok1(){
+
+    },
+    addTeam(){
+        
+    },
+    searchTeams(){
+
+    },
+    cancel1(){
+
+    },
     ok(){
         // console.log(this.get('teamId'), "its inside")
         
-    //    let newdata = {
-    //         projectName: this.getProperties('projectName'),
-    //         assignTo: [{teamName:this.get('teamName')}]
-    //     };
+       let newdata = {
+            projectName: this.getProperties('projectName'),
+            assignTo: [{teamName:this.get('teamName')}]
+        };
         
         // console.log(query.assignTo);
         //console.log(JSON.stringify(newdata));

@@ -46,5 +46,11 @@ export default Controller.extend({
         }
     }
 
+    // markTaskComplete(task){
+    // this.store.findRecord('task', task.id).then(data => {
+        
+    // })
+    
+
 
 });

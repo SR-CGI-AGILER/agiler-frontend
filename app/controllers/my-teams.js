@@ -67,6 +67,7 @@ export default Controller.extend({
              },
              deleteTeam(team){
                 this.store.findRecord('team', team.id, {reload:true}).then(data => {
+                    console.log(team,"team delete")
                     data.deleteRecord();
                     data.save();
                 })

@@ -9,7 +9,60 @@
 {{#paper-button iconButton=true onClick=(action "deleteProject" project)}}  
  {{paper-icon "delete"}}
        {{/paper-button}}
- 
+
+        
+    
+{{#paper-button iconButton=true onClick=(action "showDialogAction")}}
+{{paper-icon "group_add"}}
+{{/paper-button}}
+
+{{#if showDialog}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialogAction" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Add Team</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeDialogAction" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+
+    {{#paper-dialog-content}}
+        {{!-- {{paper-input placeholder="teamName" autofocus=true value=teamName onChange=(action (mut teamName))}} --}}
+    
+
+{{#paper-autocomplete
+  disabled=firstDisabled
+  onCreate=(action "addTeam")
+  options=items
+  allowClear=true
+  defaultHighlighted=(if enableDefaultHighlighted highlightFirstMatch)
+  searchText=(readonly teamSearchText)
+  onSearchTextChange=(action (mut teamSearchText))
+  selected=selectedteam
+  search=(if simulateQuery (action "searchTeams" team))
+  searchField="name"
+  labelPath="name"
+  placeholder="Select a Team..."
+  loadingMessage="Searching teams..."
+  noMatchesMessage="Oops this team doesn't exist. Create a new team?"
+  onSelectionChange=(action (mut selectedTeam)) as |team autocomplete|}}
+  {{paper-autocomplete-highlight
+    label=team.name
+    searchText=autocomplete.searchText
+    flags="i"}}
+{{/paper-autocomplete}}
+
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button onClick=(action "closeDialogAction" "cancel1")}}Cancel{{/paper-button}}
+      {{#paper-button onClick=(action "closeDialogAction" "ok1")}}OK{{/paper-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}
+
+
  {{paper-divider}}
  
      {{/paper-item}}
@@ -21,7 +74,7 @@
   {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin}}
     {{#paper-dialog-content}}
       {{paper-input placeholder="projectName" autofocus=true value=projectName onChange=(action (mut projectName))}}
-      {{!-- {{paper-input placeholder="teamName" autofocus=true value=teamName onChange=(action (mut teamName))}} --}}
+     
     {{/paper-dialog-content}}
     {{#paper-dialog-actions class="layout-row"}}
       <span class="flex"></span>

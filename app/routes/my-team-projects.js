@@ -21,12 +21,18 @@ export default Route.extend({
 
             })
         })
+
+        await this.store.findAll('team').then((data1) => {
+             return data1
+    })
         return data
     },
-    setupController(controller, model) {
+    async setupController(controller, model) {
         this._super(controller, model);
-        controller.set('teamId', this.get('teamId'))
-    }
+    
+        controller.set('model', model)
+        controller.set('teams', this.get('teams'))
+      }
 
 
 });

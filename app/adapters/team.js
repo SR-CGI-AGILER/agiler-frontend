@@ -10,9 +10,12 @@ export default DS.RESTAdapter.extend({
     //     return `http://${ENV.activityServerHost}/api/v1/team/deddd8d2-e041-4fbb-a8ed-3c079af9930d`
     // },
     buildURL(modelName, id, snapshot, requestType, query){
-     let memberId =this.get('session').session.content.authenticated.userdata.id;
+    //  let memberId =this.get('session').session.content.authenticated.userdata.id;
 //  console.log(memberId,"hgfchgdasghsagh")
-        return `http://${ENV.activityServerHost}/api/v1/teams/${memberId}`;
+        // return `http://${ENV.activityServerHost}/api/v1/teams/${memberId}`;
+        return `http://${ENV.activityServerHost}/api/v1/teams/345`;
+
+        
     },
 createRecord(store, type, snapshot) {
         let memberId =this.get('session').session.content.authenticated.userdata.id;
@@ -34,7 +37,7 @@ createRecord(store, type, snapshot) {
     deleteRecord(store, type, snapshot){
   
         let data = this.serialize(snapshot);
-   
+   debugger
           return new Promise(function (resolve, reject)  {
        
               Em.$.ajax({
