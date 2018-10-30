@@ -24,12 +24,6 @@ export default Controller.extend({
             }
             this.store.createRecord('message', newMessage).save();
             this.set('var',"");
-
-            // Ember.run.later(this, function() {
-            //     this.reload();
-            //     console.log('reloading');
-            // }, 5000);
-            
             this.get('model').pushObject(newMessage)
               
         },
