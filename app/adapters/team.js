@@ -7,12 +7,10 @@ import {inject as service} from '@ember/service';
 export default DS.RESTAdapter.extend({
     session: service('session'),
     buildURL(modelName, id, snapshot, requestType, query){
+        console.log("aansjjank")
      let memberId =this.get('session').session.content.authenticated.userdata.id;
  console.log(memberId,"hgfchgdasghsagh")
         return `http://${ENV.activityServerHost}/api/v1/teams/${memberId}`;
-        // return `http://${ENV.activityServerHost}/api/v1/teams/345`;
-
-        
     },
 createRecord(store, type, snapshot) {
         let memberId =this.get('session').session.content.authenticated.userdata.id;

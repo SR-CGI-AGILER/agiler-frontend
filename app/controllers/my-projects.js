@@ -42,6 +42,7 @@ export default Controller.extend({
                 deleteProject(project){
                 
                     this.store.findRecord('project', project.id, {reload:true}).then(data => {
+                        console.log("controller dele")
                         data.deleteRecord();
                         data.save();
                     })
