@@ -21,7 +21,6 @@ export default DS.RESTSerializer.extend({
           
         };
     
-    console.log(payload,"qwety")
         return this._super(store, primaryModelClass, payload, id, requestType);
       }
 });
