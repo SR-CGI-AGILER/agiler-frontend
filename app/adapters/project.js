@@ -12,7 +12,7 @@ export default DS.RESTAdapter.extend({
         // debugger
         if (query) {
             // console.log(query.assignTo,"gggg")
-            // debugger
+            debugger
             return  `http://${ENV.activityServerHost}/api/v1/teams/${query.assignTo.teamId}/projects`;
         }else {
             let memberId =this.get('session').session.content.authenticated.userdata.id;
@@ -33,7 +33,7 @@ export default DS.RESTAdapter.extend({
 	createRecord(store, type, snapshot) {
         let  newdata = this.serialize(snapshot)
         // debugger
-        // console.log(newdata)
+        console.log(newdata)
         // console.log(newdata);
         // console.log(newdata.assignTo[0].teamId,"kjbsdckbjdsc");
       return new Promise((resolve, reject) => {

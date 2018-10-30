@@ -4,6 +4,7 @@ export default Controller.extend({
     queryParams: ['modelName'],
     // modelName: null
     // store: Ember.inject.service(),
+    members: [],
 
     projectDetails: [],
     actions: {
@@ -12,8 +13,25 @@ export default Controller.extend({
             // console.log(project.get('id'))
             this.transitionToRoute('project-view', project.get('id') , {queryParams: {  modelName: project.constructor.modelName}});
         },
+        addCountry(){},
+
     
-     
+        searchCountries(){
+            console.log('this is getting is triggered')
+        // console.log(this.get('teams'), "Iam inside the discuss controller")
+        this.set('members', [])
+        this.get('user').map(eachMember => {
+    console.log(eachMember)
+      this.get('members').push(eachMember)
+  })
+
+        return this.get('users')
+        },
+
+        
+       
+      
+
     showPromptDialogAction(){
         this.toggleProperty('showPromptDialog');
     },

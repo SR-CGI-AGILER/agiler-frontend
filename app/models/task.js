@@ -6,7 +6,7 @@ export default DS.Model.extend({
     taskName : attr('string'),
     createdAt : attr('date'),
     createdBy : attr('string'),
-    dueDate : attr('date'),
+    dueDate : attr('string'),
     assignedTo : attr(),
     status : attr('string'),
     archiveTask : attr('boolean'),

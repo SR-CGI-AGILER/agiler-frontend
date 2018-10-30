@@ -14,16 +14,41 @@ export default Controller.extend({
     //     })
     // }
     actions: {
-    showPromptDialogAction(){
-        this.toggleProperty('showPromptDialog');
-    },
-    closePromptDialog(){
-        // console.log(this.getProperties('teamName'));
-        this.toggleProperty('showPromptDialog');
-    },
-    cancel() {
+        showPromptDialogAction(){
+            this.toggleProperty('showPromptDialog');
+        },
+        showDialogAction(){
+            // Ember.$.get('paper-menu')
+            this.toggleProperty('showDialog');
+        },
+        openSomething(){},
+        closeDialog(){
+            this.toggleProperty('showDialog');
+        },
+        closePromptDialog(){
+            this.toggleProperty('showPromptDialog');
+        },
+        cancel() {
 
-    },
+        },
+        ok1(x){
+            let newDate = {
+                dueDate:this.getProperties('dueDate'),
+                taskId:x._internalModel.id
+            };
+            console.log(x,"class", this.getProperties('dueDate'))
+           
+                console.log(x._internalModel.id, "ab aayega id?")
+        
+            
+            // console.log(x.getProperties('id'),"model tasks ka id")
+            this.store.findRecord('task', x.id).then(data => {
+                console.log(newDate.dueDate,"duedate hai ye")
+                data.set('dueDate', this.getProperties('dueDate').dueDate)
+                data.save();
+            })
+           
+        },
     ok(){
         // console.log(this.getProperties('taskName'));
        let newdata = {
@@ -44,6 +69,14 @@ export default Controller.extend({
            this.get('model').tasks.pushObject(createTask)
         //    console.log(this.get('model').getProperties('tasks'), "Ssdfsdfsafsdf")
         }
+    },
+    markComplete(x){
+        this.store.findRecord('task', x.id).then(data => {
+            data.set('status','complete');
+            console.log(data,"task status is complete???????")
+            data.save()
+            
+        })
     }
 
 

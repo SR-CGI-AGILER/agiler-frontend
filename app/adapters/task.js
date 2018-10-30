@@ -32,6 +32,24 @@ export default DS.RESTAdapter.extend({
             }
         })
     })
+},
+updateRecord(store, type, snapshot){
+    debugger
+    let data = this.serialize(snapshot);
+    console.log(data,"update record ka data hai")
+    return new Promise(function( resolve, reject) {
+
+        Em.$.ajax({
+            async:true,
+            crossDomain:true,
+            type:'PATCH',
+            contentType: "application/json",
+            data: JSON.stringify(data),
+             url: `http://${ENV.activityServerHost}/api/v1/task/${snapshot.id}`,
+             success: resolve
+             
+        })
+    })
 }
     
     

@@ -4,10 +4,11 @@ import ENV from 'agiler-frontend/config/environment';
 import {inject as service} from '@ember/service';
 export default Controller.extend({
     session: service('session'),
-
+    members: [],
     actions: {
         transitionToMyTeamProjects(team){
- 
+            
+            
             let temp  = team; 
             // console.log(team, "hghg")
         //    debugger
@@ -17,12 +18,19 @@ export default Controller.extend({
 
             
         },
+    
             
             showPromptDialogAction(){
                 this.toggleProperty('showPromptDialog');
             },
+            showDialogAction(){
+                this.toggleProperty('showDialog');
+            },
+            openSomething(){},
+            closeDialog(){
+                this.toggleProperty('showDialog');
+            },
             closePromptDialog(){
-             
                 this.toggleProperty('showPromptDialog');
             },
             cancel() {

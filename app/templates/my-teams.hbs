@@ -8,11 +8,60 @@
 {{#paper-item}}
    {{paper-icon "description"}}
 
- <p {{action "transitionToMyTeamProjects" team}} >{{team.teamName}} {{team.id}}</p>
+ <p {{action "transitionToMyTeamProjects" team}} >{{team.teamName}} </p>
 {{#paper-button iconButton=true onClick=(action "deleteTeam" team)}}  
  {{paper-icon "delete"}}
+  {{/paper-button}}
+{{#paper-button iconButton=true onClick=(action "showDialogAction" user)}}  
+ {{paper-icon "group_add"}}
        {{/paper-button}}
- 
+
+{{#if showDialog}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Add Member</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+
+    {{#paper-dialog-content}}
+       {{!-- {{#paper-autocomplete
+  disabled=firstDisabled
+  onCreate=(action "searchCountries")
+  options=items
+  allowClear=true
+  defaultHighlighted=(if enableDefaultHighlighted highlightFirstMatch)
+  searchText=(readonly searchCountries)
+  onSearchTextChange=(action (mut countrySearchText))
+  selected=selectedCountry
+  search=(action "searchCountries")
+  searchField="name"
+  labelPath="name"
+  placeholder="Select a member..."
+  loadingMessage="Searching member..."
+  noMatchesMessage="Oops this member doesn't exist."
+  onSelectionChange=(action (mut selectedCountry)) as |country autocomplete|}}
+  {{paper-autocomplete-highlight
+    label=country.name
+    searchText=autocomplete.searchText
+    flags="i"}}
+{{/paper-autocomplete}} --}}
+
+
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button onClick=(action "closeDialog" "cancel")}}Cancel{{/paper-button}}
+      {{#paper-button onClick=(action "closeDialog" "ok")}}OK{{/paper-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}
+
+
+
  {{paper-divider}}
  
      {{/paper-item}}
