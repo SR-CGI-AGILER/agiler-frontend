@@ -23,7 +23,9 @@ module.exports = function(environment) {
     },
     
     serverhost:"",
-    torii: {},
+    torii: {
+      
+    },
     collaborationServerHost: "",
     activityServerHost: ""
     
