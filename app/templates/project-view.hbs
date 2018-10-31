@@ -11,16 +11,18 @@
     {{paper-divider}}
 
     {{#paper-list}}
-  {{#each model.tasks as |x|}}
-    {{#paper-item as |controls|}}
+  {{#each model.tasks as |task|}}
+    {{#paper-item class="md-3-line"}}
      {{!-- {{controls.checkbox value=x.enabled secondary=true onChange=(action (mut x.enabled))}} --}}
-     
       <div class="md-list-item-text">
-        {{x.taskName}} 
-{{#paper-button iconButton=true }}  
- {{paper-icon "delete"}}
- {{/paper-button}}
+        
+        <h3>{{task.taskName}}</h3>
+        <h3>{{task.id}}</h3>
+       <p> status:{{task.status}}</p>
+        <p>due:{{task.dueDate}}</p> 
 
+
+     {{#paper-button onClick=(action "deleteTask" task)}}{{paper-icon "delete"}}{{/paper-button}}
 
 
 {{#paper-menu as |menu|}}
@@ -37,7 +39,7 @@
       {{/content.menu-item}}
           {{paper-divider}}
           {{#content.menu-item}}
-           {{#paper-button iconButton=true onClick=(action "markComplete" x)}}
+           {{#paper-button  onClick=(action "markComplete" task)}}
         {{paper-icon "done"}}      
         <span>Mark complete</span>
         {{/paper-button}}
@@ -48,7 +50,7 @@
 
 
         {{paper-divider}}
-      </div>
+     
    
 
  {{#if showDialog}}
@@ -56,6 +58,7 @@
      {{#paper-toolbar}}
       {{#paper-toolbar-tools}}
         <h2>Due Date</h2>
+        {{task.id}}
         <span class="flex"></span>
         {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
       {{/paper-toolbar-tools}}
@@ -67,22 +70,25 @@
 
     {{#paper-dialog-actions class="layout-row"}}
       <span class="flex"></span>
+    
       {{#paper-button onClick=(action "closeDialog" "cancel")}}Cancel{{/paper-button}}
-      {{#paper-button onClick=(action "ok1" x)}}OK{{/paper-button}}
+      {{#paper-button onClick=(action "ok1" task)}}OK{{/paper-button}}
     {{/paper-dialog-actions}} 
   {{/paper-dialog}}
 {{/if}}
-
+ </div>
  {{/paper-item}}
+
   {{/each}} 
      {{/paper-list}}
 </div>
+
 
 <div class="layout-row layout-align-center-end">
   <button type="button" class="block"{{action "showPromptDialogAction" }}><span class="plus">+</span>Add Task</button>
 {{!-- {{#paper-button primary=true fab=true onClick=(action "showPromptDialogAction")}}+{{/paper-button}} --}}
 {{#if showPromptDialog}}
-  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin}}
+  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
     {{#paper-dialog-content}}
       {{!-- {{paper-input placeholder="projectName" autofocus=true value=projectName onChange=(action (mut projectName))}} --}}
       {{paper-input placeholder="taskName" autofocus=true value=taskName onChange=(action (mut taskName))}}

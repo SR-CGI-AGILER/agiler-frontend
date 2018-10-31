@@ -29,6 +29,7 @@ export default Route.extend({
             });
             this.set('user', user)
         })
+        
         return data
     },
     setupController(controller, model) {

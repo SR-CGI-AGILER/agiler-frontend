@@ -71,7 +71,7 @@
 <div class="layout-row layout-align-center-end">
 {{#paper-button primary=true fab=true onClick=(action "showPromptDialogAction")}}+{{/paper-button}}
 {{#if showPromptDialog}}
-  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin}}
+  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
     {{#paper-dialog-content}}
       {{paper-input placeholder="teamName" autofocus=true value=teamName onChange=(action (mut teamName))}}
       {{!-- {{paper-input placeholder="" autofocus=true value=projectName onChange=(action (mut projectName))}} --}}

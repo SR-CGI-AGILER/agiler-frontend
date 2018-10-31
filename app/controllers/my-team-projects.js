@@ -73,7 +73,10 @@ export default Controller.extend({
                 
             this.store.findRecord('project', project.id, {reload:true}).then(data => {
                 data.deleteRecord();
+                
                 data.save();
+                this.get('model').projects.removeObject(data);
+                
             })
         }
     }

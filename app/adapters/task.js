@@ -36,44 +36,60 @@ export default DS.RESTAdapter.extend({
 updateRecord(store, type, snapshot){
     debugger
     let data = this.serialize(snapshot);
-    console.log(data,"update record ka data hai")
-    return new Promise(function( resolve, reject) {
+    if(data.status ==="complete"){
+        return new Promise(function( resolve, reject) {
 
-        Em.$.ajax({
-            async:true,
-            crossDomain:true,
-            type:'PATCH',
-            contentType: "application/json",
-            data: JSON.stringify(data),
-             url: `http://${ENV.activityServerHost}/api/v1/task/${snapshot.id}`,
-             success: resolve
-             
+            Em.$.ajax({
+                async:true,
+                crossDomain:true,
+                type:'PATCH',
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                 url: `http://${ENV.activityServerHost}/api/v1/tasks/${snapshot.id}`,
+                 success: resolve
+                 
+            })
         })
-    })
-}
+    }
+    else {
+        return new Promise(function( resolve, reject) {
+
+            Em.$.ajax({
+                async:true,
+                crossDomain:true,
+                type:'PATCH',
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                 url: `http://${ENV.activityServerHost}/api/v1/task/${snapshot.id}`,
+                 success: resolve
+                 
+            })
+        })
+    }
+},
     
     
 
-    // deleteRecord(store, type, snapshot){
+    deleteRecord(store, type, snapshot){
      
-    //     let data = this.serialize(snapshot);
-    //     //console.log(snapshot.modelName);
-    //         console.log(data,"jdavbhd")
-    //       return new Promise(function (resolve, reject)  {
-    //          debugger
-    //           Em.$.ajax({
-    //             async: true,
-    //             crossDomain: true,
-    //              type: 'DELETE',,
-    //              contentType: "application/json",
-    //              data: JSON.stringify(data),
-    //              url: `http://localhost:8000/api/v1/tasks/${snapshot.id}`,
-    //              success: {
-    //                 200: ()=>{
-    //                     Em.run(null, resolve);
-    //                 }
-    //              }
-    //           })
-    //       })
-    // }
+        let data = this.serialize(snapshot);
+        //console.log(snapshot.modelName);
+            console.log(data,"jdavbhd")
+          return new Promise(function (resolve, reject)  {
+             debugger
+              Em.$.ajax({
+                async: true,
+                crossDomain: true,
+                 type: 'DELETE',
+                 contentType: "application/json",
+                 data: JSON.stringify(data),
+                 url: `http://localhost:8000/api/v1/tasks/${snapshot.id}`,
+                 success: {
+                    200: ()=>{
+                        Em.run(null, resolve);
+                    }
+                 }
+              })
+          })
+    }
 });
