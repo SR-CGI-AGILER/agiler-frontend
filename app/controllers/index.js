@@ -11,11 +11,8 @@ export default Controller.extend({
             let session = this.get('session');
             
             this.get('session').authenticate('authenticator:torii', 'google-oauth2').then(()=>{
-                
                 let token = this.get('session').session.content.authenticated.responseObj.jwtToken;
-                
                 this.get('session').set('userToken',token);
-                
                 let data = this.get('session').session.content.authenticated.userdata;
                 this.get('session').set('currentUser',data);
                 if(token){

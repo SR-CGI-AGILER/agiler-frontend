@@ -6,10 +6,12 @@ import {inject as service} from '@ember/service';
 
 export default DS.RESTAdapter.extend({
     session: service('session'),
+    // buildURL() {
+    //     return `http://${ENV.activityServerHost}/api/v1/team/deddd8d2-e041-4fbb-a8ed-3c079af9930d`
+    // },
     buildURL(modelName, id, snapshot, requestType, query){
-        console.log("aansjjank")
      let memberId =this.get('session').session.content.authenticated.userdata.id;
- console.log(memberId,"hgfchgdasghsagh")
+//  console.log(memberId,"hgfchgdasghsagh")
         return `http://${ENV.activityServerHost}/api/v1/teams/${memberId}`;
     },
 createRecord(store, type, snapshot) {
@@ -32,7 +34,7 @@ createRecord(store, type, snapshot) {
     deleteRecord(store, type, snapshot){
   
         let data = this.serialize(snapshot);
-   debugger
+   
           return new Promise(function (resolve, reject)  {
        
               Em.$.ajax({

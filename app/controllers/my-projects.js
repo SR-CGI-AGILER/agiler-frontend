@@ -1,56 +1,25 @@
-import Controller from '@ember/controller';
-export default Controller.extend({
-    data: null,
-    
-    actions: {
-        transitionToProjectView(project){
-            this.transitionToRoute('project-view', project.get('id') , {queryParams: {  modelName: project.constructor.modelName}});
-        },
-            
-            // showPromptDialogAction(){
-            //     this.toggleProperty('showPromptDialog');
-            // },
-            // closePromptDialog(){
-            
-            //     this.toggleProperty('showPromptDialog');
-            // },
-            // cancel() {
+import Route from '@ember/routing/route';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-            // },
-            // ok(){
-                
-            //    let newdata = {
-            //         projectName: this.getProperties('projectName'),
-            //         assignTo: [{teamName:this.get('teamName')}]
-            //     };
-            //         return new Promise((resolve) => {
-            //             Em.$.ajax({
-            //                 async: true,
-            //                 crossDomain: true,
-            //                 type: 'POST',
-            //                 contentType: 'application/json',
-            //                 data: JSON.stringify(newdata),
-            //                 url:`http://localhost:8000/api/v1/project/:teamId`,
-            //                 success: {
-            //                     200: ()=>{
-            //                         Em.run(null, resolve);
-            //                     }
-            //                 }
-            //             })
-            //         })
-            //     },
-                deleteProject(project){
-                
-                    this.store.findRecord('project', project.id, {reload:true}).then(data => {
-                        console.log("controller dele")
-                        data.deleteRecord();
-                        data.save();
-                    })
-                }
-            }
-
-   
+export default Route.extend(AuthenticatedRouteMixin,{
+    beforeModel(){
+        let token = this.get('session').userToken;
+        if(!token){
+            this.transitionTo('index');
+        }
+        
+    },  
+    model(){
+        // debugger
+        let a = this.store.findAll('project');
+        
+        // a.map(function(e){
+        //     console.log("jddhjhjh")
+        //     this.store.query('project',{assignTo:[{_id:e._id}]})
+        // });
 
         
-
+        return a;
+    }
+   
 });

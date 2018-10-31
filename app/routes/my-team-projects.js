@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Route.extend(AuthenticatedRouteMixin,{
+export default Route.extend({
     teamId: null,
     init() {
         // console.log('is this hook getting called ??')
@@ -22,18 +21,13 @@ export default Route.extend(AuthenticatedRouteMixin,{
 
             })
         })
-
-        await this.store.findAll('team').then((data1) => {
-             return data1
-    })
         return data
     },
-    async setupController(controller, model) {
+    setupController(controller, model) {
         this._super(controller, model);
-    
-        controller.set('model', model)
-        controller.set('teams', this.get('teams'))
-      }
+        controller.set('teamId', this.get('teamId'))
+    }
 
 
 });
+

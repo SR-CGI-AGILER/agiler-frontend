@@ -16,14 +16,26 @@ export default DS.RESTAdapter.extend({
             return  `http://${ENV.activityServerHost}/api/v1/teams/${query.assignTo.teamId}/projects`;
         }else {
             let memberId =this.get('session').session.content.authenticated.userdata.id;
-            console.log(memberId,"hgfchgdasghsagh")
+            // console.log(memberId,"hgfchgdasghsagh")
             return `http://${ENV.activityServerHost}/api/v1/member/${memberId}/projects/`;
         }
         // debugger
     },
- 
+    // urlForQuery (query, modelName) {
+    //     // switch(modelName) {
+    //         // case 'repo' :
+    //         // debugger
+    //         return  `http://172.23.238.195:8000/api/v1/teams/${query.assignTo}/projects`;
+    //         // default:
+    //         // return this._super(...arguments);
+    //     // }
+    // },
 	createRecord(store, type, snapshot) {
         let  newdata = this.serialize(snapshot)
+        // debugger
+        // console.log(newdata)
+        // console.log(newdata);
+        // console.log(newdata.assignTo[0].teamId,"kjbsdckbjdsc");
       return new Promise((resolve, reject) => {
         Em.$.ajax({
             async: true,
@@ -48,7 +60,7 @@ export default DS.RESTAdapter.extend({
               Em.$.ajax({
                 async: true,
                 crossDomain: true,
-                 type: 'DELETE',
+                 type: "DELETE",
                  contentType: "application/json",
                  data: JSON.stringify(data),
                  url: `http://${ENV.activityServerHost}/api/v1/project/${snapshot.id}`,

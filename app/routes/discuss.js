@@ -30,19 +30,16 @@ export default Route.extend(AuthenticatedRouteMixin,{
       })
     }))
 
-    
-    
-    
     await this.store.findAll('team').then((data1) => {
-      
+
       let teams = data1.map(function (eachTeam) {
-        
+
         return eachTeam.getProperties('id', 'teamMembers')
       });
       this.set('teams', teams)
-      
+
     })
-  return messages
+    return messages
 
   
   },
