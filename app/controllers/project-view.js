@@ -12,7 +12,9 @@ export default Controller.extend({
         showPromptDialogAction(){
             this.toggleProperty('showPromptDialog');
         },
-        showDialogAction(){
+        showDialogAction(task){
+            this.set('taskId', task.get('id'))
+            console.log('task', task.get('id'))
             // Ember.$.get('paper-menu')
             this.toggleProperty('showDialog');
         },
@@ -32,20 +34,13 @@ export default Controller.extend({
             
             let newDate = {
                 dueDate:this.getProperties('dueDate'),
-                taskId:x.id
+                taskId:this.get('taskId')
             };
-            console.log(x.getProperties('id'),"class", this.getProperties('dueDate'))
-           
-                // console.log(x._internalModel.id, "ab aayega id?")
-        
-            
-            // console.log(x.getProperties('id'),"model tasks ka id")
-            this.store.findRecord('task', x.id).then(data => {
+            this.store.findRecord('task', this.get('taskId')).then(data => {
                 console.log(newDate.dueDate,"duedate hai ye")
                 data.set('dueDate', this.getProperties('dueDate').dueDate)
                 data.save();
             })
-           
         },
     ok(){
         // console.log(this.getProperties('taskName'));
@@ -70,7 +65,8 @@ export default Controller.extend({
         //    console.log(createTask, "this is the guy we need to catch hold offf..!!!")
            this.get('model').tasks.pushObject(createTask)
         //    console.log(this.get('model').getProperties('tasks'), "Ssdfsdfsafsdf")
-        },
+        this.toggleProperty('showPromptDialog');    
+    },
     
     markComplete(x){
         this.store.findRecord('task', x.id).then(data => {

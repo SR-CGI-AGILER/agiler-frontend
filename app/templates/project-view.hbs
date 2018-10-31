@@ -32,7 +32,7 @@
     {{/paper-button}}
   {{/menu.trigger}}
   {{#menu.content width=4 as |content|}}
-      {{#content.menu-item  onClick=(action "showDialogAction" ) }}
+      {{#content.menu-item  onClick=(action "showDialogAction" task ) }}
         {{#paper-button }}  
           {{paper-icon "group_add"}}
         <span>add  due date</span> {{/paper-button}}
@@ -53,12 +53,17 @@
      
    
 
- {{#if showDialog}}
+ 
+ </div>
+ {{/paper-item}}
+
+  {{/each}} 
+  {{#if showDialog}}
   {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
      {{#paper-toolbar}}
       {{#paper-toolbar-tools}}
         <h2>Due Date</h2>
-        {{task.id}}
+           {{task.id}}
         <span class="flex"></span>
         {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
       {{/paper-toolbar-tools}}
@@ -76,10 +81,6 @@
     {{/paper-dialog-actions}} 
   {{/paper-dialog}}
 {{/if}}
- </div>
- {{/paper-item}}
-
-  {{/each}} 
      {{/paper-list}}
 </div>
 
