@@ -17,3 +17,6 @@ jobs:
       - run:
           name: Connect to AWS
           command: ssh ruchik@13.233.75.155
+      - run:
+          name: command check in AWS VM
+          command: ls
