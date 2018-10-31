@@ -2,8 +2,8 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: debian:stretch
+    machine:
+      - enable: true
     steps:
       - checkout
       - add_ssh_keys:
