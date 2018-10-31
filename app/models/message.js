@@ -6,5 +6,6 @@ export default DS.Model.extend({
     roomname : attr('string'),
     messages : attr('string'),
     createdAt : attr('date'),
-    createdBy : attr('string')
+    createdBy : attr('string'),
+    picture : attr('string')
 });

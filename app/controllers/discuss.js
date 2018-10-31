@@ -43,7 +43,7 @@ export default Controller.extend({
     console.log('On open event has been called:' + event);
   },
   myMessageHandler(event) {
-    this.get('model').pushObject(event)
+    // this.get('model').pushObject(event)
     console.log('Message:' + JSON.stringify(event, 1, 1));
     this.set('message', event)
   },
@@ -55,8 +55,8 @@ export default Controller.extend({
         roomname: this.get('param').room,
         messages: this.get('var'),
         createdBy: data.name,
-        createdAt: date
-
+        createdAt: date,
+        picture: data.profilePicUrl
       }
       this.store.createRecord('message', newMessage).save();
       this.set('var', "");
@@ -71,7 +71,7 @@ export default Controller.extend({
       
 
     },
-    
+
     addUsers() {
       console.log(this.get('teams'), "I am inside the discuss controller")
       this.set('members', [])

@@ -4,11 +4,11 @@
 {{#paper-subheader}}topic name{{/paper-subheader}}
 {{#each model as |msg|}}
 {{#paper-item class="md-3-line"}}
-<img src={{session.currentUser.picture}} alt="no image" class="md-avatar">
+<img src={{msg.picture}} alt="no image" class="md-avatar">
     
 <div class="md-list-item-text">
     <div class="layout-row layout-align-space-between">
-        <h3>{{session.currentUser.name}}</h3>
+        <h3>{{msg.createdBy}}</h3>
         {{!-- <p>{{session.currentUser.email}}</p> --}}
         <h4 class="time-head">{{format-date date=updated}}</h4>
     </div>

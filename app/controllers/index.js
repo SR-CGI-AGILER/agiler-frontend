@@ -14,8 +14,8 @@ export default Controller.extend({
                 let token = this.get('session').session.content.authenticated.responseObj.jwtToken;
                 this.get('session').set('userToken',token);
                 let data = this.get('session').session.content.authenticated.userdata;
-                this.get('session').set('currentUser',data);
                 console.log(data.picture);
+                this.get('session').set('currentUser',data);
                 if(token){
                     this.transitionToRoute('my-teams');
                 }
