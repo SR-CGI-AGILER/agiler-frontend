@@ -18,6 +18,9 @@ export default Controller.extend({
                 
                 let data = this.get('session').session.content.authenticated.userdata;
                 this.get('session').set('currentUser',data);
+                
+                console.log(document.cookie,"ember cookie");
+
                 if(token){
                     this.transitionToRoute('my-teams');
                 }
