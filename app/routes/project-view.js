@@ -29,8 +29,7 @@ export default Route.extend(AuthenticatedRouteMixin,{
                     data.tasks.push(eachTask)
                  })
          })
-      await this.store.query('task', {})
-
+      
         // console.log(tasks.getProperties('id'), "hbbadcbhdc")
         // console.log(data, "hi")
         // console.log(data, "data it is")

@@ -16,7 +16,7 @@ export default DS.RESTAdapter.extend({
         // console.log(newdata)
         // console.log(newdata.taskName);
         // console.log(newdata.projectId,"kjbsdckbjdsc");
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
         // console.log(JSON.stringify(snapshot._attributes.taskName));
         Em.$.ajax({
             async: true,
@@ -25,11 +25,9 @@ export default DS.RESTAdapter.extend({
             contentType: 'application/json',
             data: JSON.stringify(newdata),
             url:`http://${ENV.activityServerHost}/api/v1/project/${newdata.projectId}/task`,
-            success: {
-                200: ()=>{
-                    Em.run(null, resolve);
-                }
-            }
+            success: resolve,
+            error: reject
+            
         })
     })
 },

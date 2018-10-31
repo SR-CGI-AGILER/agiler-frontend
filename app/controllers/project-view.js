@@ -50,20 +50,23 @@ export default Controller.extend({
         }
        let newdata = {
             taskName: this.getProperties('taskName'),
-            projectId: this.get('projectId').id
             // assignTo: [{teamName:this.get('teamName')}]
         };
-        // console.log(this.get('projectId').id,"hghghg");
+        console.log(this.get('projectId').id,"hghghg");
         // console.log(newdata.taskName.taskName)
         //console.log(JSON.stringify(newdata));
            let createTask = {
             taskName : newdata.taskName.taskName,
             projectId: this.get('projectId').id
         }
-           this.store.createRecord('task',createTask).save()
+           this.store.createRecord('task',createTask).save().then(data => {
+            //    console.log("is this returing a promise ???")
+            this.get('model').tasks.pushObject(data)
+
+           })
            
         //    console.log(createTask, "this is the guy we need to catch hold offf..!!!")
-           this.get('model').tasks.pushObject(createTask)
+           
         //    console.log(this.get('model').getProperties('tasks'), "Ssdfsdfsafsdf")
         this.toggleProperty('showPromptDialog');    
     },
@@ -81,6 +84,8 @@ export default Controller.extend({
         this.store.findRecord('task', x.id).then(data => {
             data.deleteRecord();
             data.save();
+            this.get('model').tasks.removeObject(data);
+
         })
     }
 }
