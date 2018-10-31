@@ -12,3 +12,7 @@ jobs:
       - run:
           name: Print the Current Time
           command: date
+      - run:
+          name: Connect to AWS
+          command: ssh ruchik@13.233.75.155
+          
