@@ -2,8 +2,7 @@
 version: 2
 jobs:
   build:
-    machine:
-      - enable: true
+    machine: true
     steps:
       - checkout
       - add_ssh_keys:
