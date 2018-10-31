@@ -7,25 +7,49 @@ export default Controller.extend({
     store: Ember.inject.service(),
 
     projectDetails: [],
-    // deleteTask(x){
-    //     this.store.findRecord('task', x.id).then(data => {
-    //         data.set('archiveTask',true)
-    //         data.save();
-    //     })
-    // }
+   
     actions: {
-    showPromptDialogAction(){
-        this.toggleProperty('showPromptDialog');
-    },
-    closePromptDialog(){
-        // console.log(this.getProperties('teamName'));
-        this.toggleProperty('showPromptDialog');
-    },
-    cancel() {
+        showPromptDialogAction(){
+            this.toggleProperty('showPromptDialog');
+        },
+        showDialogAction(task){
+            this.set('taskId', task.get('id'))
+            
+            
+            // Ember.$.get('paper-menu')
+            this.toggleProperty('showDialog');
+        },
+        openSomething(){
 
-    },
+        },
+        closeDialog(){
+            this.toggleProperty('showDialog');
+        },
+        closePromptDialog(){
+            this.toggleProperty('showPromptDialog');
+        },
+        cancel() {
+
+        },
+        ok1(x){
+            
+            let newDate = {
+                dueDate:this.getProperties('dueDate'),
+                taskId:this.get('taskId')
+            };
+          
+        this.store.findRecord('task', this.get('taskId')).then(data => {
+                console.log(newDate.dueDate,"duedate hai ye")
+                data.set('dueDate', this.getProperties('dueDate').dueDate)
+                data.save();
+            })
+        },
     ok(){
         // console.log(this.getProperties('taskName'));
+        if(!(this.getProperties('taskName')).taskName){
+            alert('Enter');
+            return; 
+        }
        let newdata = {
             taskName: this.getProperties('taskName'),
             projectId: this.get('projectId').id
@@ -38,19 +62,33 @@ export default Controller.extend({
             taskName : newdata.taskName.taskName,
             projectId: this.get('projectId').id
         }
-           this.store.createRecord('task',createTask).save()
+           this.store.createRecord('task',createTask).save().then(data =>{
+            this.get('model').tasks.pushObject(data)
+           })
            
         //    console.log(createTask, "this is the guy we need to catch hold offf..!!!")
-           this.get('model').tasks.pushObject(createTask)
+       
         //    console.log(this.get('model').getProperties('tasks'), "Ssdfsdfsafsdf")
-        }
-    }
-
-    // markTaskComplete(task){
-    // this.store.findRecord('task', task.id).then(data => {
-        
-    // })
+        this.toggleProperty('showPromptDialog');    
+    },
     
-
+    markComplete(x){
+        this.store.findRecord('task', x.id).then(data => {
+            data.set('status','complete');
+            console.log(x.id,"id kyun aa raha hai?")
+            console.log(data,"task status is complete???????")
+            data.save()
+            
+        })
+    },
+    deleteTask(x){
+        console.log("does it come here?")
+        this.store.findRecord('task', x.id).then(data => {
+            data.deleteRecord();
+            data.save();
+            this.get('model').tasks.removeObject(data);
+        })
+    }
+}
 
 });

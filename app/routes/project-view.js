@@ -23,14 +23,20 @@ export default Route.extend(AuthenticatedRouteMixin,{
         //  })
         // console.log((this.store.peekRecord('project', params.id).toArray()), "sdfsdfsdfsdf")
          await this.store.query('task', { projectId: params.id }).then((specificProjectTasks) => {
+             
                 // console.log(specificProjectTasks,  "this is query record")
                 specificProjectTasks.toArray().map(function(eachTask) {
                     data.tasks.push(eachTask)
                  })
          })
+         
+         console.log(data.tasks.get('id'), "taskId should come here now");
+        //  await this.store.findRecord('task', this.get('id')).then((data) => {
+        //     data.set('dueDate', this.getProperties('dueDate').dueDate)
+        //     data.save();
+        //  })
 
-
-        // console.log(params.id, "hbbadcbhdc")
+        // console.log(tasks.getProperties('id'), "hbbadcbhdc")
         // console.log(data, "hi")
         // console.log(data, "data it is")
         // data.toArray().map(function(each) {

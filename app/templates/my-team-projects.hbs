@@ -1,11 +1,36 @@
 {{outlet}}
+
+
 <div class="container">
+{{#paper-autocomplete
+  disabled=firstDisabled
+    allowClear=true
+  search= (action "searchCountries")
+
+  onCreate=(action "searchCountries")
+  options=members
+  searchField="name"
+  selected=selectedCountry
+
+  onSearchTextChange=(action "searchCountries") as |country|
+    
+
+  }}
+  {{paper-autocomplete-highlight
+    label=country.name
+    searchText=autocomplete.searchText
+    flags="i"}}
+{{/paper-autocomplete}}
+
 
 {{#each model.projects as |project|}}
 	{{#paper-list}}
 {{#paper-item}}
    {{paper-icon "description"}}
  <p {{action "transitionToProjectView" project}}>{{project.projectName}}</p>
+
+
+
 {{#paper-button iconButton=true onClick=(action "deleteProject" project)}}  
  {{paper-icon "delete"}}
        {{/paper-button}}
@@ -71,7 +96,7 @@
     <div class="layout-row layout-align-center-end">
 {{#paper-button primary=true fab=true onClick=(action "showPromptDialogAction")}}+{{/paper-button}}
 {{#if showPromptDialog}}
-  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin}}
+  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
     {{#paper-dialog-content}}
       {{paper-input placeholder="projectName" autofocus=true value=projectName onChange=(action (mut projectName))}}
      
