@@ -1,22 +1,56 @@
 import Controller from '@ember/controller';
 import ENV from 'agiler-frontend/config/environment';
-import {
-  inject as service
-} from '@ember/service';
+import { inject as service } from '@ember/service';
+// import {
+//   inject as service
+// } from '@ember/service';
 
 export default Controller.extend({
-  queryParams: ['roomId'],
   session: service('session'),
+  websockets: service('socket-io'),
+  io: null,
+  var: "",
+
+  init() {
+    this._super();
+    let io = this.get('websockets').socketFor(`http://${ENV.collaborationServerHost}/`);
+    this.set('io', io);
+    io.on('open', this.myOpenHandler, this);
+    io.on('error', this.myerrorHandler, this);
+    io.on('message', this.myMessageHandler, this);
+    io.on('close', (event) => {
+      console.log('closed');
+    }, this);
+  },
+
+
+
+  queryParams: ['roomId'],
 
   updated: Ember.computed('model', function () {
     let date = new Date();
     return date;
   }),
 
-  actions: {
-    sendButtonPressed(date) {
 
-      let data = this.get('session').session.content.authenticated.userData;
+
+
+  message: '',
+  myerrorHandler(event) {
+    console.log("this is the error", event)
+  },
+  myOpenHandler(event) {
+    console.log('On open event has been called:' + event);
+  },
+  myMessageHandler(event) {
+    this.get('model').pushObject(event)
+    console.log('Message:' + JSON.stringify(event, 1, 1));
+    this.set('message', event)
+  },
+  actions: {
+    
+    sendButtonPressed(date) {
+      let data = this.get('session').session.content.authenticated.userdata;
       let newMessage = {
         roomname: this.get('param').room,
         messages: this.get('var'),
@@ -33,25 +67,22 @@ export default Controller.extend({
       // }, 5000);
 
       this.get('model').pushObject(newMessage)
+      this.get('io').send(newMessage.messages);
+      
 
     },
-
-    //   }).save();
-    //   this.set('var', "");
-    // },
-
+    
     addUsers() {
-       console.log(this.get('teams'), "Iam inside the discuss controller")
+      console.log(this.get('teams'), "I am inside the discuss controller")
       this.set('members', [])
       this.get('teams').map(eachTeam => {
-         console.log(eachTeam)
+        console.log(eachTeam)
         eachTeam.teamMembers.map(eachMember => {
-
           this.get('members').push(eachMember)
         })
       })
 
-       console.log(this.get('members'), "I should be the members array")
+      console.log(this.get('members'), "I should be the members array")
       this.toggleProperty('showDialog');
 
       // this.set('showuser', this.store.findAll('users'));
@@ -64,7 +95,6 @@ export default Controller.extend({
 
     search_user(user) {
       console.log(user)
-
     },
 
     add(userid) {
@@ -82,7 +112,6 @@ export default Controller.extend({
           data: {}
         });
       })
-
     }
   }
 });

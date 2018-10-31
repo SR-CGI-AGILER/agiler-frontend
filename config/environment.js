@@ -5,6 +5,9 @@ module.exports = function(environment) {
     modulePrefix: 'agiler-frontend',
     environment,
     rootURL: '/',
+    'ember-websockets': {
+      socketIO: true
+    },
     locationType: 'auto',
     EmberENV: {
       FEATURES: {

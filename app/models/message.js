@@ -7,5 +7,4 @@ export default DS.Model.extend({
     messages : attr('string'),
     createdAt : attr('date'),
     createdBy : attr('string')
-
 });
