@@ -1,7 +1,10 @@
 import DS from 'ember-data';
+import ENV from 'agiler-frontend/config/environment';
 
 export default DS.RESTAdapter.extend({
   buildURL() {
-    // return `http://172.23.238.243:4000/api/users`
-  }
+    return `http://${ENV.serverhost}/api/users`
+  },
+
+
 });

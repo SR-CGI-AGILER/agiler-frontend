@@ -8,9 +8,15 @@ export default DS.RESTSerializer.extend({
       payload.data.id = payload.data._id
        payload = payload.data
      }else if(requestType === 'query') {
+       
       payload = payload.data.map(function(e) {    
          e.id = e._id
          return e
+      })
+    }else {
+      payload = payload.payload.map(function(e) {    
+        e.id = e._id
+        return e
       })
     }
     payload = {
