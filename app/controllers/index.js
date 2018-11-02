@@ -1,10 +1,7 @@
 import Controller from '@ember/controller';
-// import Ember from 'ember';
 import { inject as service } from '@ember/service';
-// import config from '../../config/environment';
 export default Controller.extend({
     session: service('session'),
-    // config: config.torii.providers['github-oauth2'],
     actions:{
         authenticateSession(){
             
@@ -12,14 +9,16 @@ export default Controller.extend({
             
             this.get('session').authenticate('authenticator:torii', 'google-oauth2').then(()=>{
                 
-                let token = this.get('session').session.content.authenticated.responseObj.jwtToken;
+                let token = this.get('session').session.content.authenticated.jwtToken;
                 
                 this.get('session').set('userToken',token);
                 
                 let data = this.get('session').session.content.authenticated.userdata;
+                console.log(data,"bsbs");
                 this.get('session').set('currentUser',data);
                 
-                console.log(document.cookie,"ember cookie");
+                document.cookie = `jwtToken=${token}`;
+                // console.log(document.cookie,"ember cookie");
 
                 if(token){
                     this.transitionToRoute('my-teams');
