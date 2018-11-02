@@ -43,7 +43,7 @@ export default Controller.extend({
     console.log('On open event has been called:' + event);
   },
   myMessageHandler(event) {
-    // this.get('model').pushObject(event)
+    this.get('model').pushObject(event)
     console.log('Message:' + JSON.stringify(event, 1, 1));
     this.set('message', event)
   },
@@ -66,7 +66,7 @@ export default Controller.extend({
       //     console.log('reloading');
       // }, 5000);
 
-      this.get('model').pushObject(newMessage)
+      // this.get('model').pushObject(newMessage)
       this.get('io').send(newMessage.messages);
       
 
