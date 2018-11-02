@@ -25,7 +25,7 @@ export default Route.extend({
       
             let user = specificMember.map(function (eachMember) {
               
-              return eachMember.getProperties('name', 'email')
+              return eachMember.getProperties('name', 'id')
             });
             this.set('user', user)
         })

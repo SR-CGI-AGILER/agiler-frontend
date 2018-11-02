@@ -2,7 +2,7 @@
 
 
 <div class="container">
-{{#paper-autocomplete
+{{!-- {{#paper-autocomplete
   disabled=firstDisabled
     allowClear=true
   search= (action "searchCountries")
@@ -20,8 +20,39 @@
     label=country.name
     searchText=autocomplete.searchText
     flags="i"}}
-{{/paper-autocomplete}}
-
+{{/paper-autocomplete}} --}}
+{{#if showDialog}}
+    {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
+        {{!-- {{#paper-card as |card|}}
+            {{input type="text" value=name placeholder="search" insert-newline='myAction' class="search"}}
+	            {{#card.actions class="layout-column"}}
+                    {{#paper-button onClick=(action 'search_user' name)}}Search{{/paper-button}} 
+                {{/card.actions}} 
+        {{/paper-card}} --}}
+    {{#paper-list}}
+        {{#paper-subheader}}Members{{/paper-subheader}}
+            {{#each members as |item|}}
+                {{#paper-item class="md-3-line" onClick = (action "add" item) }}
+                {{!-- <img src={{item.img}} alt={{item.name}} class="md-avatar"> --}}
+                    <div class="md-list-item-text">
+                        <h3>{{item.name}}</h3>
+                    </div>
+                {{/paper-item}}
+            {{paper-divider}}
+            {{/each}}
+    {{/paper-list}}
+    {{/paper-dialog}}
+    {{/if}}  
+<div class="text-box">
+    <div>
+        <span class="flex"></span>
+    </div>
+   
+    <a href="#" {{action 'addUsers'}}>
+        {{paper-icon "add" }} Add Member
+    </a>
+</div>
+{{paper-divider}}
 
 {{#each model.projects as |project|}}
 	{{#paper-list}}
@@ -40,6 +71,19 @@
      {{/paper-item}}
     {{/paper-list}}
     {{/each}}
+
+{{!-- {{#each model.users as |user|}}
+{{#paper-list}}
+{{#paper-item}}
+   {{paper-icon "description"}}
+ <p >{{user.name}}</p>
+ 
+ {{paper-divider}}
+ 
+     {{/paper-item}}
+    {{/paper-list}}
+
+ {{/each}} --}}
     <div class="layout-row layout-align-center-end">
 {{#paper-button primary=true fab=true onClick=(action "showPromptDialogAction")}}+{{/paper-button}}
 {{#if showPromptDialog}}

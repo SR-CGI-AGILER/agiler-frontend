@@ -29,7 +29,26 @@ createRecord(store, type, snapshot) {
             success: resolve
         })
     })
-   },
+   }, 
+    updateRecord(store, type, snapshot){
+    // debugger
+    let data = this.serialize(snapshot);
+    console.log(data.teamMembers,"hghg")
+        return new Promise(function( resolve, reject) {
+
+            Em.$.ajax({
+                async:true,
+                crossDomain:true,
+                type:'PATCH',
+                contentType: "application/json",
+                data: JSON.stringify(data.teamMembers),
+                 url: `http://${ENV.activityServerHost}/api/v1/teams/${snapshot.id}/${data.teamMembers.id}`,
+                 success: resolve
+                 
+            })
+        })
+    },
+
 
     deleteRecord(store, type, snapshot){
   

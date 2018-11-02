@@ -32,7 +32,7 @@ export default DS.RESTAdapter.extend({
     })
 },
 updateRecord(store, type, snapshot){
-    debugger
+    // debugger
     let data = this.serialize(snapshot);
     if(data.status ==="complete"){
         return new Promise(function( resolve, reject) {

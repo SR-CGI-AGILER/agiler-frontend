@@ -28,6 +28,37 @@ export default Controller.extend({
         return this.get('users')
         },
 
+        addUsers(){
+        // console.log(this.get('users'), "Iam inside the discuss controller")
+        this.set('members', [])
+        this.get('user').map(eachMember => {
+        console.log(eachMember)
+        this.get('members').push(eachMember)
+  })
+        this.toggleProperty('showDialog');
+
+        return this.get('users')
+    },
+        add(item){
+            console.log(item.id,this.get('teamId'))
+            let newData = {
+                memberId:item,
+                teamId:this.get('teamId')
+            };
+            this.store.findRecord('team', newData.teamId).then(data => {
+                console.log(newData.memberId,"ids hai ye")
+                data.set('teamMembers', newData.memberId) 
+                // console.log(data.get('memberId'),"aaaaaaa")
+
+                data.save();
+            })
+        },
+        addVegeName(){    
+        },
+        removeVegeName(){},
+        closeDialog() {
+            this.toggleProperty('showDialog')
+          },
         
        
       

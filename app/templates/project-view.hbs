@@ -17,7 +17,7 @@
       <div class="md-list-item-text">
         
         <h3>{{task.taskName}}</h3>
-        <h3>{{task.id}}</h3>
+        {{!-- <h3>{{task.id}}</h3> --}}
        <p> status:{{task.status}}</p>
         <p>due:{{task.dueDate}}</p> 
 
@@ -63,7 +63,7 @@
      {{#paper-toolbar}}
       {{#paper-toolbar-tools}}
         <h2>Due Date</h2>
-           {{task.id}}
+           {{!-- {{task.id}} --}}
         <span class="flex"></span>
         {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
       {{/paper-toolbar-tools}}

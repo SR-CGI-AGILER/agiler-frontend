@@ -3,7 +3,7 @@ import DS from 'ember-data';
 export default DS.RESTSerializer.extend({
   
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
-     debugger
+    //  debugger
      if (requestType === 'createRecord') {
       payload.data.id = payload.data._id
        payload = payload.data
