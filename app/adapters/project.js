@@ -9,33 +9,21 @@ export default DS.RESTAdapter.extend({
 
 	session: service('session'),
     buildURL(modelName, id, snapshot, requestType, query){
-        // debugger
         if (query) {
-            // console.log(query.assignTo,"gggg")
-            debugger
+
             return  `http://${ENV.activityServerHost}/api/v1/teams/${query.assignTo.teamId}/projects`;
         }else {
             let memberId =this.get('session').session.content.authenticated.userdata.id;
-            // console.log(memberId,"hgfchgdasghsagh")
+
             return `http://${ENV.activityServerHost}/api/v1/member/${memberId}/projects/`;
         }
-        // debugger
+       
     },
-    // urlForQuery (query, modelName) {
-    //     // switch(modelName) {
-    //         // case 'repo' :
-    //         // debugger
-    //         return  `http://172.23.238.195:8000/api/v1/teams/${query.assignTo}/projects`;
-    //         // default:
-    //         // return this._super(...arguments);
-    //     // }
-    // },
+ 
 	createRecord(store, type, snapshot) {
+
         let  newdata = this.serialize(snapshot)
-        // debugger
-        console.log(newdata)
-        // console.log(newdata);
-        // console.log(newdata.assignTo[0].teamId,"kjbsdckbjdsc");
+
       return new Promise((resolve, reject) => {
         Em.$.ajax({
             async: true,
@@ -49,7 +37,26 @@ export default DS.RESTAdapter.extend({
         })
     })
     },
-          
+    updateRecord(store, type, snapshot) {
+
+        let data = this.serialize(snapshot);
+
+        return new Promise((resolve) => {
+            Em.$.ajax({
+                async: true,
+                crossDomain: true,
+                type: 'PATCH',
+                contentType: 'application/json',
+                data: JSON.stringify(data.assignTo),
+                url: `http://${ENV.activityServerHost}/api/v1/project/${snapshot.id}/assignTo`,
+                success: {
+                    200: ()=>{
+                        Em.run(null, resolve);
+                    }
+                }
+            })
+        })
+    },
 
     deleteRecord(store, type, snapshot){
    

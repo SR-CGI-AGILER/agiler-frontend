@@ -11,37 +11,40 @@ export default Route.extend(AuthenticatedRouteMixin,{
     },  
     async  model(params) {
 
-        // let tasks = []
-       
         let data = {
             project: this.store.peekRecord('project', params.id),
             // tasks: this.store.findAll('task', {id: params.id})
-            tasks: []
+            tasks: [],
+            teams: [],
+            users:[]
         };
         //  await this.store.peekRecord('project', params.id).then((data) => {
         //     console.log(data, "this is peek Record")
         //  })
         // console.log((this.store.peekRecord('project', params.id).toArray()), "sdfsdfsdfsdf")
+        await this.store.findAll('team').then((specificTeam)=> {
+            specificTeam.toArray().map(function (eachTeam) {
+                data.teams.push(eachTeam)
+            })
+        })
          await this.store.query('task', { projectId: params.id }).then((specificProjectTasks) => {
              
-                // console.log(specificProjectTasks,  "this is query record")
+        
                 specificProjectTasks.toArray().map(function(eachTask) {
                     data.tasks.push(eachTask)
                  })
          })
-         
-         console.log(data.tasks.get('id'), "taskId should come here now");
-        //  await this.store.findRecord('task', this.get('id')).then((data) => {
-        //     data.set('dueDate', this.getProperties('dueDate').dueDate)
-        //     data.save();
-        //  })
-
-        // console.log(tasks.getProperties('id'), "hbbadcbhdc")
-        // console.log(data, "hi")
-        // console.log(data, "data it is")
+         await this.store.findAll('user').then((specificMember) => {
+      
+            let user = specificMember.map(function (eachMember) {
+              
+              return eachMember.getProperties('name', 'email')
+            });
+            this.set('user', user)
+        })
         // data.toArray().map(function(each) {
         //     tasks.push(each)
-        // })
+        // })   controller.set('user', this.get('user'))
 
         return data
     },
@@ -49,6 +52,7 @@ export default Route.extend(AuthenticatedRouteMixin,{
     setupController(controller, model) {
         this._super(...arguments);
         controller.set('projectId', this.paramsFor(this.routeName))
+        controller.set('user', this.get('user'))
         // controller.set('model', this.get('model'))
         // controller.set('projectDetails', this.store.peekRecord('project', this.paramsFor(this.routeName).id))
 

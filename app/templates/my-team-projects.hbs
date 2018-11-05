@@ -2,7 +2,7 @@
 
 
 <div class="container">
-{{#paper-autocomplete
+{{!-- {{#paper-autocomplete
   disabled=firstDisabled
     allowClear=true
   search= (action "searchCountries")
@@ -20,7 +20,17 @@
     label=country.name
     searchText=autocomplete.searchText
     flags="i"}}
-{{/paper-autocomplete}}
+{{/paper-autocomplete}} --}}
+
+{{!-- <h2>Chips with Autocomplete (requires match)</h2>
+{{paper-chips
+  readOnly=readOnly
+  removeItem=(action "removeVegeName")
+  addItem=(action "addVegeName")
+  placeholder="Add a team"
+  content=vegeNames
+  options=remainingVegeNames
+  requireMatch=true}} --}}
 
 
 {{#each model.projects as |project|}}
@@ -32,6 +42,7 @@
 {{#paper-button iconButton=true onClick=(action "deleteProject" project)}}  
  {{paper-icon "delete"}}
        {{/paper-button}}
+
 
         
     

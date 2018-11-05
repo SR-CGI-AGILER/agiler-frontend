@@ -10,16 +10,7 @@ export default Route.extend(AuthenticatedRouteMixin,{
         
     },  
     model(){
-        // debugger
-        let a = this.store.findAll('project');
-        
-        // a.map(function(e){
-        //     console.log("jddhjhjh")
-        //     this.store.query('project',{assignTo:[{_id:e._id}]})
-        // });
-
-        
-        return a;
+        return this.store.findAll('project');
     }
    
 });

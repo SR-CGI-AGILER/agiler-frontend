@@ -11,7 +11,7 @@ export default DS.RESTAdapter.extend({
     // },
     buildURL(modelName, id, snapshot, requestType, query){
      let memberId =this.get('session').session.content.authenticated.userdata.id;
-//  console.log(memberId,"hgfchgdasghsagh")
+
         return `http://${ENV.activityServerHost}/api/v1/teams/${memberId}`;
     },
 createRecord(store, type, snapshot) {

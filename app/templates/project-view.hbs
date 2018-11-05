@@ -5,6 +5,30 @@
     {{#paper-subheader}}<h4>CreatedAt:{{model.project.createdAt}}</h4>{{/paper-subheader}}
     {{!-- {{#paper-subheader}}<h4>CreatedBy:{{model.project.createdBy}}</h4>{{/paper-subheader}} --}}
     
+{{#paper-button iconButton=true onClick=(action "showPromptDialogAction1")}}
+    {{paper-icon "group_add"}}
+    {{/paper-button}}
+    {{#if showPromptDialog1}}
+  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog1" "cancel" "ok2") origin=dialogOrigin clickOutsideToClose=true}}
+    {{#paper-dialog-content}}
+      {{!-- {{paper-input placeholder="teamName" autofocus=true value=projectName onChange=(action (mut teamName))}} --}}
+     {{#each model.teams as |team|}}
+     {{#paper-list}}
+     {{#paper-item}}
+     <p {{action "addTeamToProject" team}}> {{team.teamName}} </p>
+     {{paper-divider}}
+     {{/paper-item}}
+     {{/paper-list}}
+     {{/each}}
+    {{/paper-dialog-content}}
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button primary=true onClick=(action "closePromptDialog1" "cancel")}}Cancel{{/paper-button}}
+      {{#paper-button primary=true onClick=(action "ok2")}}Ok{{/paper-button}}
+    {{/paper-dialog-actions}}
+
+  {{/paper-dialog}}
+{{/if}}
 
     </div>
     
@@ -20,11 +44,10 @@
         <h3>{{task.id}}</h3>
        <p> status:{{task.status}}</p>
         <p>due:{{task.dueDate}}</p> 
+        <p>assigned to: @{{task.assignTo}} </p>
 
 
-     {{#paper-button onClick=(action "deleteTask" task)}}{{paper-icon "delete"}}{{/paper-button}}
-
-
+    
 {{#paper-menu as |menu|}}
   {{#menu.trigger}}
     {{#paper-button iconButton=true}}
@@ -44,6 +67,13 @@
         <span>Mark complete</span>
         {{/paper-button}}
         {{/content.menu-item}}
+        {{paper-divider}}
+         {{#content.menu-item}}
+              {{#paper-button  onClick=(action "showDialogAction1" task)}}
+        {{paper-icon "person_add"}}      
+        <span>Assign Task</span>
+        {{/paper-button}}
+        {{/content.menu-item}}
   {{/menu.content}}
 {{/paper-menu}}
 
@@ -59,7 +89,7 @@
 
   {{/each}} 
   {{#if showDialog}}
-  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel" "ok1") origin=dialogOrigin clickOutsideToClose=true}}
      {{#paper-toolbar}}
       {{#paper-toolbar-tools}}
         <h2>Due Date</h2>
@@ -81,6 +111,35 @@
     {{/paper-dialog-actions}} 
   {{/paper-dialog}}
 {{/if}}
+{{#if showDialog1}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog1" "cancel" "ok3") origin=dialogOrigin clickOutsideToClose=true}}
+     {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Assign Task</h2>
+           {{task.id}}
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeDialog1" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+   {{#paper-dialog-content}}
+     {{#each model.teams as |team|}}
+     {{#paper-list}}
+     {{#paper-item}}
+     <p {{action "assignTask" team}}> Member names </p>
+     {{paper-divider}}
+     {{/paper-item}}
+     {{/paper-list}}
+      {{/each}}
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+    
+      {{#paper-button onClick=(action "closeDialog" "cancel")}}Cancel{{/paper-button}}
+      {{#paper-button onClick=(action "ok1" task)}}OK{{/paper-button}}
+    {{/paper-dialog-actions}} 
+  {{/paper-dialog}}
+{{/if}}
      {{/paper-list}}
 </div>
 
@@ -89,7 +148,7 @@
   <button type="button" class="block"{{action "showPromptDialogAction" }}><span class="plus">+</span>Add Task</button>
 {{!-- {{#paper-button primary=true fab=true onClick=(action "showPromptDialogAction")}}+{{/paper-button}} --}}
 {{#if showPromptDialog}}
-  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
+  {{#paper-dialog fullscreen=fullscreen onClose=(action "closePromptDialog" "cancel" "ok") origin=dialogOrigin clickOutsideToClose=true}}
     {{#paper-dialog-content}}
       {{!-- {{paper-input placeholder="projectName" autofocus=true value=projectName onChange=(action (mut projectName))}} --}}
       {{paper-input placeholder="taskName" autofocus=true value=taskName onChange=(action (mut taskName))}}
