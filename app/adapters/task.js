@@ -30,7 +30,8 @@ export default DS.RESTAdapter.extend({
 updateRecord(store, type, snapshot){
 
     let data = this.serialize(snapshot);
-    if(data.status ==="complete"){
+    debugger
+    if(data.status ==="complete" ){
         return new Promise(function( resolve, reject) {
 
             Em.$.ajax({
@@ -40,8 +41,24 @@ updateRecord(store, type, snapshot){
                 contentType: "application/json",
                 data: JSON.stringify(data),
                  url: `http://${ENV.activityServerHost}/api/v1/tasks/${snapshot.id}`,
-                 success: resolve
+                 success: resolve,
+                 error:reject
                  
+            })
+        })
+    }
+    else if(data.assignTo !== null && data.status != "complete" ){
+        console.log(data,"Asd")
+        debugger
+        return new Promise(function (resolve, reject){
+            Em.$.ajax({
+                async:true,
+                crossDomain:true,
+                type:'PATCH',
+                data: JSON.stringify(data.assignTo),
+                url: `http://${ENV.activityServerHost}/api/v1/taskx/${snapshot.id}/${data.assignTo.id}`,
+                success: resolve,
+                error:reject
             })
         })
     }
@@ -55,7 +72,8 @@ updateRecord(store, type, snapshot){
                 contentType: "application/json",
                 data: JSON.stringify(data),
                  url: `http://${ENV.activityServerHost}/api/v1/task/${snapshot.id}`,
-                 success: resolve
+                 success: resolve,
+                 error:reject
                  
             })
         })

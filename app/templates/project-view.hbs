@@ -43,8 +43,14 @@
         <h3>{{task.taskName}}</h3>
         <h3>{{task.id}}</h3>
        <p> status:{{task.status}}</p>
-        <p>due:{{task.dueDate}}</p> 
-        <p>assigned to: @{{task.assignTo}} </p>
+        <p>due:{{task.dueDate}}</p>
+        <p>assigned to: </p>
+        {{#each task.assignTo as |user|}}
+        <p>{{user.memberId}}</p>
+        {{/each}}
+        {{!-- {{#each task.assignTo as |assignTo|}}
+        <p> {{assignTo.memberId}} </p>
+        {{/each}} --}}
 
 
     
@@ -56,9 +62,9 @@
   {{/menu.trigger}}
   {{#menu.content width=4 as |content|}}
       {{#content.menu-item  onClick=(action "showDialogAction" task ) }}
-        {{#paper-button }}  
+        {{#paper-button}}  
           {{paper-icon "group_add"}}
-        <span>add  due date</span> {{/paper-button}}
+        <span>add due date</span> {{/paper-button}}
       {{/content.menu-item}}
           {{paper-divider}}
           {{#content.menu-item}}
@@ -68,8 +74,8 @@
         {{/paper-button}}
         {{/content.menu-item}}
         {{paper-divider}}
-         {{#content.menu-item}}
-              {{#paper-button  onClick=(action "showDialogAction1" task)}}
+         {{#content.menu-item onClick=(action "getUsers" task)}}
+              {{#paper-button}}
         {{paper-icon "person_add"}}      
         <span>Assign Task</span>
         {{/paper-button}}
@@ -89,13 +95,13 @@
 
   {{/each}} 
   {{#if showDialog}}
-  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel" "ok1") origin=dialogOrigin clickOutsideToClose=true}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel1" "ok1") origin=dialogOrigin clickOutsideToClose=true}}
      {{#paper-toolbar}}
       {{#paper-toolbar-tools}}
         <h2>Due Date</h2>
            {{task.id}}
         <span class="flex"></span>
-        {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+        {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel1")}}{{paper-icon icon="close"}}{{/paper-button}}
       {{/paper-toolbar-tools}}
     {{/paper-toolbar}}
    {{#paper-dialog-content}}
@@ -111,25 +117,38 @@
     {{/paper-dialog-actions}} 
   {{/paper-dialog}}
 {{/if}}
+
+
 {{#if showDialog1}}
-  {{#paper-dialog class="flex-77" onClose=(action "closeDialog1" "cancel" "ok3") origin=dialogOrigin clickOutsideToClose=true}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog1" "cancel2" "ok3") origin=dialogOrigin clickOutsideToClose=true}}
      {{#paper-toolbar}}
       {{#paper-toolbar-tools}}
         <h2>Assign Task</h2>
            {{task.id}}
         <span class="flex"></span>
-        {{#paper-button iconButton=true onClick=(action "closeDialog1" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+        {{#paper-button iconButton=true onClick=(action "closeDialog1" "cancel2")}}{{paper-icon icon="close"}}{{/paper-button}}
       {{/paper-toolbar-tools}}
     {{/paper-toolbar}}
    {{#paper-dialog-content}}
-     {{#each model.teams as |team|}}
+     {{#each members as |user|}}
      {{#paper-list}}
      {{#paper-item}}
-     <p {{action "assignTask" team}}> Member names </p>
+     <p {{action "add" user}}>{{user.name}} </p>
      {{paper-divider}}
      {{/paper-item}}
      {{/paper-list}}
       {{/each}}
+      {{!-- {{#paper-list}}
+      {{#paper-subheader}}Members{{/paper-subheader}} --}}
+      {{!-- {{#each members as |item|}}
+      {{#paper-item class="3-md-line" onClick =(action "add" item)}}
+      <div class="md-list-item-text">
+        <h3>{{item.name}}</h3>
+      </div>
+      {{/paper-item}}
+      {{paper-divider}}
+      {{/each}}
+      {{/paper-list}} --}}
     {{/paper-dialog-content}}
 
     {{#paper-dialog-actions class="layout-row"}}

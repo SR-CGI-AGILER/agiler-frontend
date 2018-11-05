@@ -32,14 +32,16 @@ export default Route.extend(AuthenticatedRouteMixin,{
         
                 specificProjectTasks.toArray().map(function(eachTask) {
                     data.tasks.push(eachTask)
+                    // return eachTask.getProperties('')
                  })
+                //  this.set('task', task)
          })
          await this.store.findAll('user').then((specificMember) => {
       
             let user = specificMember.map(function (eachMember) {
-              
-              return eachMember.getProperties('name', 'email')
-            });
+                data.users.push(eachMember)
+                return eachMember.getProperties('name', 'id')
+            })
             this.set('user', user)
         })
         // data.toArray().map(function(each) {
@@ -53,6 +55,7 @@ export default Route.extend(AuthenticatedRouteMixin,{
         this._super(...arguments);
         controller.set('projectId', this.paramsFor(this.routeName))
         controller.set('user', this.get('user'))
+        
         // controller.set('model', this.get('model'))
         // controller.set('projectDetails', this.store.peekRecord('project', this.paramsFor(this.routeName).id))
 

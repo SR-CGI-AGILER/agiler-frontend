@@ -7,6 +7,7 @@ export default Controller.extend({
     store: Ember.inject.service(),
 
     projectDetails: [],
+    members: [],
    
     actions: {
         showPromptDialogAction(){
@@ -26,6 +27,34 @@ export default Controller.extend({
         },
         openSomething(){
 
+        },
+        getUsers(task){
+            // console.log(this.get('users'), "Iam inside the discuss controller")
+            this.set('members', [])
+            this.get('user').map(eachMember => {
+            console.log(eachMember)
+            this.get('members').push(eachMember)
+            console.log(eachMember,"adfg")
+      })
+            this.toggleProperty('showDialog1');
+            this.set('taskId',task.get('id'))
+            return this.get('users')
+        },
+        add(user){
+            let newdata = {
+                memberId:user
+            };
+            this.store.findRecord('task', this.get('taskId')).then(data => {
+                console.log(newdata.memberId,"user data")
+                data.set('assignTo', newdata.memberId)
+                console.log(data,"Adf")
+                debugger
+                data.save()
+            }).then(function(err, data) {
+                console.log(data)
+                debugger
+
+            })
         },
         closeDialog(){
             this.toggleProperty('showDialog');
@@ -135,7 +164,21 @@ export default Controller.extend({
         // console.log(this.get('assignTo'), "asd")
         this.store.findRecord('project',this.get('projectId').id).then(data => {
          data.set('assignTo', newdata)
-         console.log(data,"data hai ye")
+        //  console.log(data,"data hai ye")
+            data.save();
+        })
+    },
+    assignTask(user){
+        let data = {
+            memberId: user.id
+        };
+        console.log(data,"user ka data")
+        
+        this.store.findRecord('task', this.get('task').id).then(data => {
+            data.set('assignTo', data)
+            
+            console.log(data, "task data it is");
+            debugger
             data.save();
         })
     },
