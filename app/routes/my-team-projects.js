@@ -28,12 +28,23 @@ export default Route.extend(AuthenticatedRouteMixin,{
 
             })
         })
+        await this.store.findAll('user').then((specificMember) => {
+      
+            let user = specificMember.map(function (eachMember) {
+              
+              return eachMember.getProperties('name', 'id')
+            });
+            this.set('user', user)
+        })
+        
         return data
     },
     setupController(controller, model) {
         this._super(controller, model);
         controller.set('teamId', this.get('teamId'))
-    }
+        controller.set('user', this.get('user'))
 
+    }
+  
 
 });

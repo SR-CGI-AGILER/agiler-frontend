@@ -22,6 +22,8 @@ export default Route.extend(AuthenticatedRouteMixin,{
 
         })
     })
+   
+
         // a.map(function(e){
         //     console.log("jddhjhjh")
         //     this.store.query('project',{assignTo:[{_id:e._id}]})
@@ -30,4 +32,6 @@ export default Route.extend(AuthenticatedRouteMixin,{
         
         return data;
     }
+    
+
 });
