@@ -10,7 +10,7 @@ export default DS.RESTAdapter.extend({
 	session: service('session'),
     buildURL(modelName, id, snapshot, requestType, query){
         if (query) {
-
+            
             return  `http://${ENV.activityServerHost}/api/v1/teams/${query.assignTo.teamId}/projects`;
         }else {
             let memberId =this.get('session').session.content.authenticated.userdata.id;

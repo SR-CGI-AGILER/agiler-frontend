@@ -12,10 +12,10 @@ export default Controller.extend({
             
             this.get('session').authenticate('authenticator:torii', 'google-oauth2').then(()=>{
                 let token = this.get('session').session.content.authenticated.responseObj.jwtToken;
-                // console.log(this.get('session').session.content.authenticated.responseObj)
                 
                 this.get('session').set('userToken',token);
                 let data = this.get('session').session.content.authenticated.userdata;
+                console.log(data.picture);
                 this.get('session').set('currentUser',data);
                 if(token){
                     this.transitionToRoute('my-teams');

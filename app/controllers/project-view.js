@@ -47,6 +47,7 @@ export default Controller.extend({
             this.store.findRecord('task', this.get('taskId')).then(data => {
                 console.log(newdata.memberId,"user data")
                 data.set('assignTo', newdata.memberId)
+                data.set('flag', 'assignTo')
                 console.log(data,"Adf")
                 debugger
                 data.save()
@@ -82,6 +83,7 @@ export default Controller.extend({
         this.store.findRecord('task', this.get('taskId')).then(data => {
                 console.log(newDate.dueDate,"duedate hai ye")
                 data.set('dueDate', this.getProperties('dueDate').dueDate)
+                data.set('flag','dueDate')
                 data.save();
             })
         },
@@ -142,6 +144,7 @@ export default Controller.extend({
     markComplete(x){
         this.store.findRecord('task', x.id).then(data => {
             data.set('status','complete');
+            data.set('flag','complete');
             console.log(x.id,"id kyun aa raha hai?")
             console.log(data,"task status is complete???????")
             data.save()
@@ -168,20 +171,21 @@ export default Controller.extend({
             data.save();
         })
     },
-    assignTask(user){
-        let data = {
-            memberId: user.id
-        };
-        console.log(data,"user ka data")
+    // assignTask(user){
+    //     let data = {
+    //         memberId: user.id
+    //     };
+    //     console.log(data,"user ka data")
         
-        this.store.findRecord('task', this.get('task').id).then(data => {
-            data.set('assignTo', data)
+    //     this.store.findRecord('task', this.get('task').id).then(data => {
+    //         data.set('assignTo', data)
+    //         data.set('flag',true)
             
-            console.log(data, "task data it is");
-            debugger
-            data.save();
-        })
-    },
+    //         console.log(data, "task data it is");
+    //         debugger
+    //         data.save();
+    //     })
+    // },
     deleteTask(x){
         console.log("does it come here?")
         this.store.findRecord('task', x.id).then(data => {

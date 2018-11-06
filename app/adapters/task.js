@@ -28,12 +28,13 @@ export default DS.RESTAdapter.extend({
     })
 },
 updateRecord(store, type, snapshot){
-
+   
     let data = this.serialize(snapshot);
     debugger
-    if(data.status ==="complete" ){
+    // if(data.status === "complete" ){
+        if(data.flag === "complete"){
         return new Promise(function( resolve, reject) {
-
+            debugger
             Em.$.ajax({
                 async:true,
                 crossDomain:true,
@@ -43,14 +44,16 @@ updateRecord(store, type, snapshot){
                  url: `http://${ENV.activityServerHost}/api/v1/tasks/${snapshot.id}`,
                  success: resolve,
                  error:reject
-                 
+
             })
         })
     }
-    else if(data.assignTo !== null && data.status != "complete" ){
-        console.log(data,"Asd")
+    // else if(data.assignTo !== null && data.status !== "complete" && data.flag === "true"){
+        else if(data.flag === "assignTo"){
+            console.log(data, "assignTo update record")
         debugger
         return new Promise(function (resolve, reject){
+            debugger
             Em.$.ajax({
                 async:true,
                 crossDomain:true,
@@ -62,9 +65,11 @@ updateRecord(store, type, snapshot){
             })
         })
     }
-    else {
+    // else if(data.dueDate !== null && data.status != "complete" && data.flag !=="true"){
+        else if(data.flag === "dueDate"){
         return new Promise(function( resolve, reject) {
-
+       
+                debugger
             Em.$.ajax({
                 async:true,
                 crossDomain:true,

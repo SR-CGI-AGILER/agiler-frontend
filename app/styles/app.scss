@@ -2,3 +2,11 @@
 @import 'project-view';
 @import 'create-team';
 @import 'tool-bar';
+
+md-toolbar:not(.md-menu-toolbar) {
+    background-color:#ee0505;
+}
+
+.md-toolbar-tools a {
+    font-weight: 500;
+}
